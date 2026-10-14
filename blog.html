@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Journal | Vermeil &amp; Co. Horology &amp; Haute Joaillerie</title>
+    <meta name="description"
+        content="Read articles and gemological essays on Haute Joaillerie, diamond certification, goldsmithing techniques, and independent Swiss horology by Vermeil & Co.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#d4af37', secondary: '#14090e', accent: '#831843' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body class="transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-[100] transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center transition-all duration-300">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <img src="images/logo.png" alt="Vermeil & Co. Logo" class="h-10 w-auto object-contain">
+                <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+            </a>
+            <div class="hidden xl:flex items-center space-x-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="jewelry.html" class="nav-link">Jewelry</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hidden xl:flex items-center space-x-6">
+                <button id="rtl-toggle"
+                    class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-current"
+                    title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors"></button>
+                <button id="cart-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </button>
+                <a href="login.html"
+                    class="px-6 py-2 border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 uppercase text-sm font-bold tracking-widest text-xs">Login</a>
+            </div>
+            <button id="mobile-menu-btn" class="xl:hidden p-2 text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-secondary flex flex-col p-8 xl:hidden">
+        <div class="flex justify-between items-center mb-12">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <img src="images/logo.png" alt="Vermeil & Co. Logo" class="h-10 w-auto object-contain">
+                <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+            </a>
+            <button id="mobile-menu-close" class="p-2 text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6 text-xl text-white">
+            <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+            <a href="jewelry.html" class="hover:text-primary transition-colors">Jewelry</a>
+            <a href="academy.html" class="hover:text-primary transition-colors">Academy</a>
+            <a href="about.html" class="hover:text-primary transition-colors">About</a>
+            <a href="shop.html" class="hover:text-primary transition-colors">Shop</a>
+            <a href="blog.html" class="text-primary font-bold">Blog</a>
+            <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col space-y-4">
+            <div class="flex items-center space-x-6 text-white mb-6">
+                <button id="rtl-toggle-mobile" class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-white" title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle-mobile"
+                    class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest">Theme</button>
+                <button id="cart-toggle-mobile"
+                    class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest relative">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-count-mobile" class="cart-badge">0</span>
+                </button>
+            </div>
+            <a href="login.html"
+                class="w-full py-4 text-center border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 uppercase text-sm font-bold tracking-widest">Login</a>
+        </div>
+    </div>
+
+    <!-- Section 1: Journal Spotlight Feature (Using jewelry-hero.jpg) -->
+    <section class="min-h-[85vh] py-32 md:py-0 md:h-[75vh] relative flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/jewelry-hero.jpg" alt="Vermeil & Co. Journal Hero"
+                class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/65 dark:bg-black/80 transition-colors duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#14090e] via-transparent to-transparent h-48 bottom-0 top-auto"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-white text-center">
+            <div class="max-w-4xl mx-auto fade-in flex flex-col items-center">
+                <span class="text-primary font-bold uppercase tracking-[0.4em] text-xs mb-4 block">Haute Joaillerie &bull; Editorial Monograph</span>
+                <h1 class="text-4xl md:text-7xl font-bold mb-6 tracking-tighter uppercase leading-[1.05] text-white">THE
+                    ARCHITECTURE OF
+                    <br><span class="text-primary italic text-3xl md:text-6xl">Brilliance.</span>
+                </h1>
+                <p class="text-base md:text-lg opacity-85 leading-relaxed max-w-2xl mx-auto mb-10 font-light">
+                    How master goldsmiths harmonize Colombian pear-cut emeralds, VVS1 natural diamonds, and recycled 18-karat gold into generational suites.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#articles"
+                        class="px-8 py-4 bg-primary hover:bg-accent text-white font-bold uppercase tracking-widest text-xs transition-all shadow-xl">Read
+                        Monographs</a>
+                    <a href="jewelry.html"
+                        class="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold uppercase tracking-widest text-xs transition-all backdrop-blur-md">View
+                        Suite</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: The Chronicled Stream (With All Jewelry Images & Information) -->
+    <section id="articles" class="py-24 bg-white dark:bg-secondary border-b border-black/5 dark:border-white/5 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in text-black dark:text-white">
+                <span class="text-xs uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Atelier Journal</span>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Essays in Horology &amp; Joaillerie</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-black dark:text-white">
+                <!-- Article 1: Natural South Sea Pearls (images/j/anestiev-pearls-4216965_1920.jpg) -->
+                <article class="fade-in group flex flex-col h-full bg-[#faf7f5] dark:bg-white/5 border border-black/5 dark:border-white/10 overflow-hidden shadow-lg">
+                    <div class="img-zoom relative aspect-video overflow-hidden bg-white/5">
+                        <img src="images/j/anestiev-pearls-4216965_1920.jpg" alt="Natural Pearls and Oceanic Gemology"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <span class="text-[9px] uppercase tracking-widest text-primary font-bold mb-2 block">Oceanic Joaillerie &bull; Oct 2026</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
+                            The Luster of Natural Pearls: Akoya &amp; South Sea
+                        </h3>
+                        <p class="opacity-75 text-xs leading-relaxed mb-6 font-light">
+                            Beyond cut stones lies the organic miracle of cultured pearls. Exploring nacre density, baroque silhouettes, and why silk hand-knotting remains essential for luxury pearl preservation.
+                        </p>
+                        <a href="jewelry.html"
+                            class="text-[10px] uppercase tracking-widest font-bold border-b border-primary pb-1 text-primary hover:text-accent transition-all mt-auto w-fit">Explore
+                            Pearl Strands &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Article 2: Diamond Solitaires & 4Cs (images/j/lobostudiohamburg-ring-66598_1920.jpg) -->
+                <article class="fade-in group flex flex-col h-full bg-[#faf7f5] dark:bg-white/5 border border-black/5 dark:border-white/10 overflow-hidden shadow-lg" style="transition-delay: 0.1s;">
+                    <div class="img-zoom relative aspect-video overflow-hidden bg-white/5">
+                        <img src="images/j/lobostudiohamburg-ring-66598_1920.jpg" alt="Solitaire Diamond Ring Craft"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <span class="text-[9px] uppercase tracking-widest text-primary font-bold mb-2 block">Gemology Guide &bull; Sep 2026</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
+                            The 4Cs Decoded: GIA Natural Solitaire Rings
+                        </h3>
+                        <p class="opacity-75 text-xs leading-relaxed mb-6 font-light">
+                            Why D-colorless and VVS1 clarity represent the pinnacle of light performance. How precision prong architecture in 950 platinum protects rare diamonds while maximizing scintillation.
+                        </p>
+                        <a href="jewelry.html"
+                            class="text-[10px] uppercase tracking-widest font-bold border-b border-primary pb-1 text-primary hover:text-accent transition-all mt-auto w-fit">View
+                            Solitaires &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Article 3: Australian Black Opals (images/j/hans-opal-4765457_1920.jpg) -->
+                <article class="fade-in group flex flex-col h-full bg-[#faf7f5] dark:bg-white/5 border border-black/5 dark:border-white/10 overflow-hidden shadow-lg" style="transition-delay: 0.2s;">
+                    <div class="img-zoom relative aspect-video overflow-hidden bg-white/5">
+                        <img src="images/j/hans-opal-4765457_1920.jpg" alt="Lightning Ridge Black Opals"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <span class="text-[9px] uppercase tracking-widest text-primary font-bold mb-2 block">Rare Gemstones &bull; Aug 2026</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
+                            Lightning Ridge: The Magic of Play-of-Color
+                        </h3>
+                        <p class="opacity-75 text-xs leading-relaxed mb-6 font-light">
+                            Unlike faceted stones, Australian black opals display a living kaleidoscope of electric hues. Discover how silica spheres diffract sunlight into radiant spectral flashes.
+                        </p>
+                        <a href="jewelry.html"
+                            class="text-[10px] uppercase tracking-widest font-bold border-b border-primary pb-1 text-primary hover:text-accent transition-all mt-auto w-fit">View
+                            Opal Collection &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Article 4: Italian Solid Gold Chains (images/j/hans-chain-2119611_1920.jpg) -->
+                <article class="fade-in group flex flex-col h-full bg-[#faf7f5] dark:bg-white/5 border border-black/5 dark:border-white/10 overflow-hidden shadow-lg">
+                    <div class="img-zoom relative aspect-video overflow-hidden bg-white/5">
+                        <img src="images/j/hans-chain-2119611_1920.jpg" alt="Italian 18K Solid Gold Chainwork"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <span class="text-[9px] uppercase tracking-widest text-primary font-bold mb-2 block">Goldsmithing &bull; Jul 2026</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
+                            The Anatomy of 18K Solid Gold Curb Chains
+                        </h3>
+                        <p class="opacity-75 text-xs leading-relaxed mb-6 font-light">
+                            From Vicenza ateliers to modern collector salons: how interlocking solid gold links are hand-beveled, diamond-cut, and balanced with concealed box closures.
+                        </p>
+                        <a href="jewelry.html"
+                            class="text-[10px] uppercase tracking-widest font-bold border-b border-primary pb-1 text-primary hover:text-accent transition-all mt-auto w-fit">View
+                            Chains &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Article 5: Statement Earrings (images/j/aestheticjourney-earrings-8310858_1920.jpg) -->
+                <article class="fade-in group flex flex-col h-full bg-[#faf7f5] dark:bg-white/5 border border-black/5 dark:border-white/10 overflow-hidden shadow-lg" style="transition-delay: 0.1s;">
+                    <div class="img-zoom relative aspect-video overflow-hidden bg-white/5">
+                        <img src="images/j/aestheticjourney-earrings-8310858_1920.jpg" alt="Chandelier Drop Earrings"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <span class="text-[9px] uppercase tracking-widest text-primary font-bold mb-2 block">Haute Joaillerie &bull; Jun 2026</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
+                            Sculptural Splendor: Chandelier Diamond Drops
+                        </h3>
+                        <p class="opacity-75 text-xs leading-relaxed mb-6 font-light">
+                            Engineering movement into fine jewelry: how articulated joints allow multi-tiered diamond earrings to cascade naturally and catch candlelight with every step.
+                        </p>
+                        <a href="jewelry.html"
+                            class="text-[10px] uppercase tracking-widest font-bold border-b border-primary pb-1 text-primary hover:text-accent transition-all mt-auto w-fit">View
+                            Earrings &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Article 6: Vintage Horology Pocket Watches (images/j/stocksnap-pocket-watch-2569573_1920.jpg) -->
+                <article class="fade-in group flex flex-col h-full bg-[#faf7f5] dark:bg-white/5 border border-black/5 dark:border-white/10 overflow-hidden shadow-lg" style="transition-delay: 0.2s;">
+                    <div class="img-zoom relative aspect-video overflow-hidden bg-white/5">
+                        <img src="images/j/stocksnap-pocket-watch-2569573_1920.jpg" alt="Heritage Pocket Chronometers"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <span class="text-[9px] uppercase tracking-widest text-primary font-bold mb-2 block">Horology Heritage &bull; May 2026</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter group-hover:text-primary transition-colors">
+                            The Pocket Watch Legacy: Genesis of Precision
+                        </h3>
+                        <p class="opacity-75 text-xs leading-relaxed mb-6 font-light">
+                            Before wristwatches conquered the twentieth century, pocket chronometers with hand-turned guilloché dials and vermeil cases embodied the zenith of portable luxury.
+                        </p>
+                        <a href="shop.html"
+                            class="text-[10px] uppercase tracking-widest font-bold border-b border-primary pb-1 text-primary hover:text-accent transition-all mt-auto w-fit">Explore
+                            Heritage &rarr;</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Collector Lexicon -->
+    <section class="py-24 border-y border-black/5 dark:border-white/5 bg-secondary text-white">
+        <div class="container mx-auto px-6 text-center">
+            <span class="text-xs uppercase tracking-[0.4em] text-primary mb-3 block font-bold">Collector Archives</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 uppercase tracking-tight">Topics of Connoisseurship</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
+                <a href="jewelry.html"
+                    class="w-full py-6 border border-white/10 hover:border-primary hover:bg-accent/40 transition-all uppercase tracking-widest text-xs font-bold bg-white/5 flex flex-col justify-center items-center">
+                    <span class="text-primary text-xl mb-1">&#9830;</span>
+                    <span>Diamond Grading (GIA)</span>
+                </a>
+                <a href="about.html"
+                    class="w-full py-6 border border-white/10 hover:border-primary hover:bg-accent/40 transition-all uppercase tracking-widest text-xs font-bold bg-white/5 flex flex-col justify-center items-center">
+                    <span class="text-primary text-xl mb-1">&#9874;</span>
+                    <span>Goldsmithing Protocols</span>
+                </a>
+                <a href="jewelry.html#bespoke"
+                    class="w-full py-6 border border-white/10 hover:border-primary hover:bg-accent/40 transition-all uppercase tracking-widest text-xs font-bold bg-white/5 flex flex-col justify-center items-center">
+                    <span class="text-primary text-xl mb-1">&#9734;</span>
+                    <span>Bespoke Commissions</span>
+                </a>
+                <a href="shop.html"
+                    class="w-full py-6 border border-white/10 hover:border-primary hover:bg-accent/40 transition-all uppercase tracking-widest text-xs font-bold bg-white/5 flex flex-col justify-center items-center">
+                    <span class="text-primary text-xl mb-1">&#9881;</span>
+                    <span>Mechanical Calibers</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-secondary text-black dark:text-white py-20 border-t border-black/5 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="fade-in">
+                    <a href="index.html" class="flex items-center gap-4 mb-8 group">
+                        <img src="images/logo.png" alt="Vermeil & Co. Logo" class="h-10 w-auto object-contain">
+                        <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+                    </a>
+                    <p class="opacity-70 mb-8 leading-relaxed text-sm">
+                        Curators of independent Swiss microbrand watches and bespoke Haute Joaillerie fine jewelry.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="p-2 bg-black/5 dark:bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 transition-all text-black dark:text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="p-2 bg-black/5 dark:bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 transition-all text-black dark:text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="p-2 bg-black/5 dark:bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 transition-all text-black dark:text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="fade-in" style="transition-delay: 0.1s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Quick Links</h4>
+                    <ul class="space-y-4 text-sm opacity-80">
+                        <li><a href="index.html" class="hover:text-primary transition-all">Home</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Fine Jewelry</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">Watch Collections</a></li>
+                        <li><a href="about.html" class="hover:text-primary transition-all">Our Story</a></li>
+                        <li><a href="blog.html" class="hover:text-primary transition-all">Journal</a></li>
+                        <li><a href="contact.html" class="hover:text-primary transition-all">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="fade-in" style="transition-delay: 0.2s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Collections</h4>
+                    <ul class="space-y-4 text-sm opacity-80">
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Diamond Rings</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Haute Joaillerie</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Tennis Bracelets</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">Dive Watches</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">GMT Masters</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="fade-in" style="transition-delay: 0.3s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Join the Circle</h4>
+                    <p class="text-sm opacity-70 mb-6">Receive salon invitations and gemological monographs.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Email Address" required
+                            class="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 px-6 py-4 w-full text-sm focus:outline-none focus:border-primary transition-all rounded-l text-black dark:text-white">
+                        <button type="submit"
+                            class="bg-primary px-6 py-4 text-white hover:bg-accent transition-all rounded-r">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div
+                class="border-t border-white/10 pt-10 flex flex-col items-center opacity-70 text-xs tracking-widest uppercase text-center">
+                <p>&copy; 2026 Vermeil &amp; Co. Luxury Watches &amp; Fine Jewelry. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="bg-primary p-4 rounded-full text-white shadow-2xl hover:scale-110 transition-all">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer"
+        class="fixed top-0 right-0 h-screen w-full md:w-[450px] bg-white dark:bg-secondary z-[100] p-10 flex flex-col shadow-2xl">
+        <div class="flex justify-between items-center mb-12">
+            <h3 class="text-2xl font-bold tracking-tighter uppercase">My <span
+                    class="text-primary italic">Collection</span></h3>
+            <button id="cart-close" class="p-2 text-primary hover:rotate-90 transition-all">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="cart-items-list" class="flex-1 overflow-y-auto pr-4"></div>
+
+        <div class="border-t border-white/5 pt-10 mt-10">
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">Total Value</span>
+                <span id="cart-total" class="text-2xl font-bold tracking-tighter text-primary">$0.00</span>
+            </div>
+            <button
+                class="btn-premium w-full bg-primary text-white py-6 font-bold uppercase tracking-[0.4em] text-xs shadow-xl">Complete
+                Acquisition</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="cart-toast" class="cart-toast">Item added to collection</div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vermeil &amp; Co. | Luxury Watches &amp; Fine Jewelry</title>
+    <meta name="description"
+        content="Curated luxury microbrand watches and bespoke fine jewelry. Discover mechanical precision, certified diamonds, and handcrafted haute joaillerie.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#d4af37',
+                        secondary: '#14090e',
+                        accent: '#831843',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body class="transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-[100] transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center transition-all duration-300">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <img src="images/logo.png" alt="Vermeil &amp; Co. Logo" class="h-10 w-auto object-contain">
+                <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden xl:flex items-center gap-8">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="jewelry.html" class="nav-link">Jewelry</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <!-- Utility -->
+            <div class="hidden xl:flex items-center space-x-6">
+                <button id="rtl-toggle"
+                    class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-current"
+                    title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors"></button>
+                <button id="cart-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </button>
+                <a href="login.html"
+                    class="px-6 py-2 border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 uppercase text-sm font-bold tracking-widest">Login</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="xl:hidden p-2 text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-white dark:bg-secondary flex flex-col p-8 xl:hidden overflow-y-auto">
+        <div class="flex justify-between items-center mb-12 text-white">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <img src="images/logo.png" alt="Vermeil &amp; Co. Logo" class="h-10 w-auto object-contain">
+                <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+            </a>
+            <button id="mobile-menu-close" class="p-2 text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-4 text-xl text-white">
+            <a href="index.html" class="text-primary font-bold">Home</a>
+            <a href="jewelry.html" class="hover:text-primary transition-colors">Jewelry</a>
+            <a href="academy.html" class="hover:text-primary transition-colors">Academy</a>
+            <a href="about.html" class="hover:text-primary transition-colors">About</a>
+            <a href="shop.html" class="hover:text-primary transition-colors">Shop</a>
+            <a href="blog.html" class="hover:text-primary transition-colors">Blog</a>
+            <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="mt-8 pt-8 border-t border-white/5 flex flex-col space-y-4">
+            <div class="flex items-center space-x-6 text-white mb-6">
+                <button id="rtl-toggle-mobile" class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-white" title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle-mobile" class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest">Theme</button>
+                <button id="cart-toggle-mobile" class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest relative">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-count-mobile" class="cart-badge">0</span>
+                </button>
+            </div>
+            <a href="login.html" class="w-full py-4 text-center border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 uppercase text-sm font-bold tracking-widest">Login</a>
+        </div>
+    </div>
+
+    <!-- Section 1: Discovery Hero -->
+    <section class="h-screen relative flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg" alt="Luxury Watch" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent h-60"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-white pt-32 text-center">
+            <div class="max-w-3xl mx-auto fade-in">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter uppercase leading-tight italic">TIME &amp; <br><span class="text-primary not-italic">JEWELRY.</span></h1>
+                <p class="text-lg md:text-xl mb-12 opacity-90 leading-relaxed max-w-xl mx-auto font-light">
+                    Welcome to Vermeil &amp; Co. We bridge the gap between traditional Swiss precision, independent horology, and bespoke fine jewelry.
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <a href="shop.html"
+                        class="btn-premium w-full md:w-auto px-10 py-5 bg-primary text-white font-bold uppercase tracking-widest text-sm shadow-xl text-center">Explore Watches</a>
+                    <a href="jewelry.html"
+                        class="w-full md:w-auto px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold uppercase tracking-widest text-sm hover:bg-white/20 transition-all text-center">Fine Jewelry</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Artisanal Best Sellers -->
+    <section class="py-24 bg-white dark:bg-secondary border-b border-black/5 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 fade-in text-center md:text-left text-black dark:text-white">
+                <div>
+                    <h2 class="text-sm uppercase tracking-[0.3em] text-primary mb-4">Curated Artisans</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold tracking-tight">The Best Sellers</h3>
+                </div>
+                <a href="shop.html"
+                    class="mt-8 md:mt-0 text-primary border-b border-primary py-2 font-bold uppercase tracking-widest text-xs hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white transition-all duration-300">View
+                    Entire Atelier</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="group card-hover fade-in">
+                    <div class="img-zoom relative bg-white/5 aspect-[4/5] overflow-hidden mb-6">
+                        <img src="https://images.pexels.com/photos/3829441/pexels-photo-3829441.jpeg" alt="W1"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                        <div
+                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                            <button
+                                class="add-to-cart bg-primary text-white px-8 py-4 font-bold uppercase tracking-widest text-xs"
+                                data-id="h1-1" data-name="Deep Sea Voyager" data-price="1250"
+                                data-image="https://images.pexels.com/photos/3829441/pexels-photo-3829441.jpeg">Acquire</button>
+                        </div>
+                    </div>
+                    <div class="text-center text-black dark:text-white">
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Deep Sea Voyager</h4>
+                        <p class="text-primary font-bold mb-4">$1,250.00</p>
+                    </div>
+                </div>
+                <div class="group card-hover fade-in" style="transition-delay: 0.1s;">
+                    <div class="img-zoom relative bg-white/5 aspect-[4/5] overflow-hidden mb-6">
+                        <img src="https://images.pexels.com/photos/36812415/pexels-photo-36812415.jpeg" alt="W2"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                            <button
+                                class="add-to-cart bg-primary text-white px-8 py-4 font-bold uppercase tracking-widest text-xs"
+                                data-id="h1-2" data-name="Neo Classic" data-price="890"
+                                data-image="https://images.pexels.com/photos/36812415/pexels-photo-36812415.jpeg">Acquire</button>
+                        </div>
+                    </div>
+                    <div class="text-center text-black dark:text-white">
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Neo Classic</h4>
+                        <p class="text-primary font-bold mb-4">$890.00</p>
+                    </div>
+                </div>
+                <div class="group card-hover fade-in" style="transition-delay: 0.2s;">
+                    <div class="img-zoom relative bg-white/5 aspect-[4/5] overflow-hidden mb-6">
+                        <img src="https://images.pexels.com/photos/8091862/pexels-photo-8091862.jpeg" alt="W3"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                        <div
+                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                            <button
+                                class="add-to-cart bg-primary text-white px-8 py-4 font-bold uppercase tracking-widest text-xs"
+                                data-id="h1-3" data-name="Titan GMT" data-price="2100"
+                                data-image="https://images.pexels.com/photos/8091862/pexels-photo-8091862.jpeg">Acquire</button>
+                        </div>
+                    </div>
+                    <div class="text-center text-black dark:text-white">
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Titan GMT</h4>
+                        <p class="text-primary font-bold mb-4">$2,100.00</p>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="group card-hover fade-in">
+                    <div class="img-zoom relative bg-white/5 aspect-[4/5] overflow-hidden mb-6">
+                        <img src="https://images.pexels.com/photos/32591511/pexels-photo-32591511.jpeg" alt="W4"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                        <div
+                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                            <button
+                                class="add-to-cart bg-primary text-white px-8 py-4 font-bold uppercase tracking-widest text-xs"
+                                data-id="h1-4" data-name="Stealth Pilot" data-price="1350"
+                                data-image="https://images.pexels.com/photos/32591511/pexels-photo-32591511.jpeg">Acquire</button>
+                        </div>
+                    </div>
+                    <div class="text-center text-black dark:text-white">
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Stealth Pilot</h4>
+                        <p class="text-primary font-bold mb-4">$1,350.00</p>
+                    </div>
+                </div>
+                <div class="group card-hover fade-in" style="transition-delay: 0.1s;">
+                    <div class="img-zoom relative bg-white/5 aspect-[4/5] overflow-hidden mb-6">
+                        <img src="https://images.pexels.com/photos/34031837/pexels-photo-34031837.jpeg" alt="W5"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                            <button
+                                class="add-to-cart bg-primary text-white px-8 py-4 font-bold uppercase tracking-widest text-xs"
+                                data-id="h1-5" data-name="Midnight Sun" data-price="1050"
+                                data-image="https://images.pexels.com/photos/34031837/pexels-photo-34031837.jpeg">Acquire</button>
+                        </div>
+                    </div>
+                    <div class="text-center text-black dark:text-white">
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Midnight Sun</h4>
+                        <p class="text-primary font-bold mb-4">$1,050.00</p>
+                    </div>
+                </div>
+                <div class="group card-hover fade-in" style="transition-delay: 0.2s;">
+                    <div class="img-zoom relative bg-white/5 aspect-[4/5] overflow-hidden mb-6">
+                        <img src="https://images.pexels.com/photos/7102587/pexels-photo-7102587.jpeg" alt="W6"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                        <div
+                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                            <button
+                                class="add-to-cart bg-primary text-white px-8 py-4 font-bold uppercase tracking-widest text-xs"
+                                data-id="h1-6" data-name="Aurora Field" data-price="1150"
+                                data-image="https://images.pexels.com/photos/7102587/pexels-photo-7102587.jpeg">Acquire</button>
+                        </div>
+                    </div>
+                    <div class="text-center text-black dark:text-white">
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Aurora Field</h4>
+                        <p class="text-primary font-bold mb-4">$1,150.00</p>
+                    </div>
+                </div>
+                <!-- Row 3 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Haute Joaillerie (Fine Jewelry Collection) -->
+    <section id="jewelry" class="py-24 bg-[#faf8f5] dark:bg-[#121212] border-b border-black/5 dark:border-white/5 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 fade-in text-center md:text-left text-black dark:text-white">
+                <div>
+                    <span class="text-sm uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Haute Joaillerie</span>
+                    <h3 class="text-4xl md:text-5xl font-bold tracking-tight">The Fine Jewelry Collection</h3>
+                    <p class="text-sm opacity-60 mt-2 max-w-md">Individually handcrafted with 18k solid gold, conflict-free certified diamonds, and exceptional natural gemstones.</p>
+                </div>
+                <a href="jewelry.html"
+                    class="mt-8 md:mt-0 text-primary border-b border-primary py-2 font-bold uppercase tracking-widest text-xs hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white transition-all duration-300 flex items-center gap-2">
+                    <span>View Entire Atelier</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+
+            <!-- Jewelry Feature Banner -->
+            <div class="relative overflow-hidden mb-16 fade-in border border-black/5 dark:border-white/10 group shadow-2xl rounded-sm">
+                <div class="aspect-[16/9] md:aspect-[21/9] w-full relative">
+                    <img src="images/jewelry-hero.jpg" alt="High Jewelry Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
+                    <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end md:justify-center max-w-xl text-white">
+                        <span class="text-xs uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Exclusive Atelier Piece</span>
+                        <h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4 leading-tight">The Imperial Emerald &amp; Diamond Suite</h4>
+                        <p class="text-sm opacity-80 mb-6 leading-relaxed hidden sm:block">A 5.20-carat pear Colombian emerald accompanied by a cascading marquise diamond necklace and matching emerald-cut pavé rings in 18k yellow gold.</p>
+                        <div class="flex items-center gap-4">
+                            <button class="add-to-cart px-8 py-4 bg-primary hover:bg-accent text-white font-bold uppercase tracking-widest text-xs transition-all shadow-lg"
+                                data-id="jewel-hero" data-name="Imperial Emerald & Diamond Suite" data-price="14500" data-image="images/jewelry-hero.jpg">
+                                Acquire Suite &bull; $14,500
+                            </button>
+                            <a href="jewelry.html" class="px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold uppercase tracking-widest text-xs transition-all border border-white/20">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jewelry Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- Jewel 1: Solitaire Diamond Ring (images/j/lobostudiohamburg-ring-66598_1920.jpg) -->
+                <div class="group card-hover fade-in bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-300">
+                    <div class="img-zoom relative aspect-square overflow-hidden bg-white/5">
+                        <img src="images/j/lobostudiohamburg-ring-66598_1920.jpg" alt="The Solitaire Imperial Ring"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 text-[9px] uppercase tracking-widest text-primary font-bold">18K Platinum &bull; 2.5ct</div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-4">
+                            <button class="add-to-cart bg-primary hover:bg-accent text-white px-6 py-3 font-bold uppercase tracking-widest text-xs shadow-xl transition-all"
+                                data-id="jewel-1" data-name="Solitaire Imperial Ring" data-price="4850" data-image="images/j/lobostudiohamburg-ring-66598_1920.jpg">
+                                Add to Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center text-black dark:text-white">
+                        <span class="text-[9px] uppercase tracking-[0.3em] text-primary block mb-1 font-bold">Engagement &bull; High Jewelry</span>
+                        <h4 class="text-lg font-bold uppercase tracking-tight mb-2">Solitaire Imperial Ring</h4>
+                        <p class="text-xs opacity-60 mb-3">Round brilliant D-colorless diamond in 950 platinum</p>
+                        <p class="text-primary font-bold text-lg">$4,850.00</p>
+                    </div>
+                </div>
+
+                <!-- Jewel 2: South Sea Pearl Strand (images/j/anestiev-pearls-4216965_1920.jpg) -->
+                <div class="group card-hover fade-in bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-300" style="transition-delay: 0.1s;">
+                    <div class="img-zoom relative aspect-square overflow-hidden bg-white/5">
+                        <img src="images/j/anestiev-pearls-4216965_1920.jpg" alt="South Sea Cultured Pearl Strand"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 text-[9px] uppercase tracking-widest text-primary font-bold">Natural Pearl &bull; 18K</div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-4">
+                            <button class="add-to-cart bg-primary hover:bg-accent text-white px-6 py-3 font-bold uppercase tracking-widest text-xs shadow-xl transition-all"
+                                data-id="jewel-2" data-name="South Sea Cultured Pearl Strand" data-price="3600" data-image="images/j/anestiev-pearls-4216965_1920.jpg">
+                                Add to Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center text-black dark:text-white">
+                        <span class="text-[9px] uppercase tracking-[0.3em] text-primary block mb-1 font-bold">Pearl Joaillerie</span>
+                        <h4 class="text-lg font-bold uppercase tracking-tight mb-2">South Sea Pearl Strand</h4>
+                        <p class="text-xs opacity-60 mb-3">Lustrous 10-12mm pearls hand-knotted on silk</p>
+                        <p class="text-primary font-bold text-lg">$3,600.00</p>
+                    </div>
+                </div>
+
+                <!-- Jewel 3: 18K Italian Solid Gold Chain (images/j/hans-chain-2119611_1920.jpg) -->
+                <div class="group card-hover fade-in bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-300" style="transition-delay: 0.2s;">
+                    <div class="img-zoom relative aspect-square overflow-hidden bg-white/5">
+                        <img src="images/j/hans-chain-2119611_1920.jpg" alt="18K Italian Solid Gold Curb Chain"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 text-[9px] uppercase tracking-widest text-primary font-bold">18K Solid Gold &bull; 45g</div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-4">
+                            <button class="add-to-cart bg-primary hover:bg-accent text-white px-6 py-3 font-bold uppercase tracking-widest text-xs shadow-xl transition-all"
+                                data-id="jewel-3" data-name="18K Italian Curb Link Chain" data-price="2850" data-image="images/j/hans-chain-2119611_1920.jpg">
+                                Add to Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center text-black dark:text-white">
+                        <span class="text-[9px] uppercase tracking-[0.3em] text-primary block mb-1 font-bold">Chains &amp; Links</span>
+                        <h4 class="text-lg font-bold uppercase tracking-tight mb-2">18K Italian Curb Chain</h4>
+                        <p class="text-xs opacity-60 mb-3">Diamond-cut solid gold curb links with box clasp</p>
+                        <p class="text-primary font-bold text-lg">$2,850.00</p>
+                    </div>
+                </div>
+
+                <!-- Jewel 4: Grand Joaillerie Parure Suite (images/j/bruceandyqq-jewelry-625725_1920.jpg) -->
+                <div class="group card-hover fade-in bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-300" style="transition-delay: 0.3s;">
+                    <div class="img-zoom relative aspect-square overflow-hidden bg-white/5">
+                        <img src="images/j/bruceandyqq-jewelry-625725_1920.jpg" alt="Grand Joaillerie Parure Suite"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 text-[9px] uppercase tracking-widest text-primary font-bold">Haute Joaillerie &bull; Suite</div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-4">
+                            <button class="add-to-cart bg-primary hover:bg-accent text-white px-6 py-3 font-bold uppercase tracking-widest text-xs shadow-xl transition-all"
+                                data-id="jewel-4" data-name="Grand Joaillerie Parure Suite" data-price="14500" data-image="images/j/bruceandyqq-jewelry-625725_1920.jpg">
+                                Add to Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center text-black dark:text-white">
+                        <span class="text-[9px] uppercase tracking-[0.3em] text-primary block mb-1 font-bold">Haute Joaillerie</span>
+                        <h4 class="text-lg font-bold uppercase tracking-tight mb-2">Grand Joaillerie Suite</h4>
+                        <p class="text-xs opacity-60 mb-3">Diamond collar, cocktail rings and drop earrings</p>
+                        <p class="text-primary font-bold text-lg">$14,500.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atelier Craft Banner -->
+            <div class="bg-white dark:bg-secondary border border-black/5 dark:border-white/5 p-8 md:p-12 flex flex-col lg:flex-row items-center gap-12 fade-in">
+                <div class="w-full lg:w-1/2 aspect-video overflow-hidden rounded-sm relative shadow-xl">
+                    <img src="images/jewelry-craft.jpg" alt="Master Goldsmith at Bench" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <span class="absolute bottom-4 left-4 text-[10px] uppercase tracking-widest text-white/90 font-mono bg-black/50 backdrop-blur-md px-3 py-1">Atelier Geneva &bull; Master Goldsmith Bench</span>
+                </div>
+                <div class="w-full lg:w-1/2 text-center lg:text-left text-black dark:text-white">
+                    <span class="text-xs uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Atelier Craftsmanship</span>
+                    <h4 class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-4">Handcrafted For Generations</h4>
+                    <p class="text-sm opacity-70 leading-relaxed mb-6 font-light">
+                        Every stone is hand-selected for supreme cut, color, and clarity. Our master jewelers carve wax models, cast in certified 18-karat recycled gold and platinum, and hand-set each diamond under microscopic scrutiny to guarantee everlasting brilliance.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 border-t border-black/10 dark:border-white/10 pt-6 mb-8 text-center">
+                        <div>
+                            <span class="text-xl font-bold text-primary block">100%</span>
+                            <span class="text-[9px] uppercase tracking-widest opacity-60">Conflict-Free</span>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold text-primary block">18K &amp; 950</span>
+                            <span class="text-[9px] uppercase tracking-widest opacity-60">Gold &amp; Platinum</span>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold text-primary block">Lifetime</span>
+                            <span class="text-[9px] uppercase tracking-widest opacity-60">Warranty</span>
+                        </div>
+                    </div>
+                    <a href="jewelry.html" class="inline-block px-8 py-4 bg-primary hover:bg-accent text-white font-bold uppercase tracking-widest text-xs transition-all shadow-md">Explore Jewelry Boutique &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Vermeil Academy & Skills Portal Feature -->
+    <section class="py-20 bg-gradient-to-r from-secondary via-[#1f0d16] to-secondary border-b border-primary/20 text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="w-full lg:w-1/2">
+                    <span class="text-xs uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Accredited Ed-Tech Portal</span>
+                    <h3 class="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 leading-tight">Vermeil Skills Academy of Haute Horlogerie &amp; Gemology</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-6 font-light">
+                        Step inside our master atelier. Access 1080p video masterclasses, technical watchmaking blueprints, diamond 4Cs microscopy manuals, interactive certification examinations, and 1-on-1 mentorship with master craftsmen.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6 mb-8 text-center">
+                        <div class="p-3 bg-white/5 rounded border border-white/5">
+                            <span class="text-xl font-bold text-primary block">36</span>
+                            <span class="text-[9px] uppercase tracking-widest text-gray-400">Video Modules</span>
+                        </div>
+                        <div class="p-3 bg-white/5 rounded border border-white/5">
+                            <span class="text-xl font-bold text-primary block">Official</span>
+                            <span class="text-[9px] uppercase tracking-widest text-gray-400">Certifications</span>
+                        </div>
+                        <div class="p-3 bg-white/5 rounded border border-white/5">
+                            <span class="text-xl font-bold text-primary block">1-on-1</span>
+                            <span class="text-[9px] uppercase tracking-widest text-gray-400">Master Mentors</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="academy.html" class="px-8 py-4 bg-primary hover:bg-primary/90 text-secondary font-bold uppercase tracking-widest text-xs transition-all shadow-xl flex items-center gap-2">
+                            <span>Enter Academy Portal &rarr;</span>
+                        </a>
+                        <a href="academy.html#quiz-section" class="px-6 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold uppercase tracking-widest text-xs transition-all">
+                            Take Certification Exam
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 aspect-video rounded-lg overflow-hidden border border-white/10 shadow-2xl relative group">
+                    <img src="images/j/stocksnap-pocket-watch-2569573_1920.jpg" alt="Watchmaking Masterclass" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-8">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded bg-accent text-[9px] uppercase font-bold tracking-widest text-white inline-block mb-2">Featured Masterclass</span>
+                            <h4 class="text-xl font-bold text-white">Swiss Lever Escapements &amp; Diamond Microscopy</h4>
+                            <p class="text-xs text-gray-300 mt-1">Taught by Master Horologist Philippe Laurent &amp; Dr. Hélène Vance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Engineering Core (Enhanced Card Layout) -->
+    <section class="py-24 border-y border-black/5 dark:border-white/5 bg-white dark:bg-secondary">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 fade-in text-black dark:text-white">
+                <h2 class="text-sm uppercase tracking-[0.4em] text-primary mb-4">Core Principles</h2>
+                <h3 class="text-5xl font-bold tracking-tighter">ENGINEERED FOR PERFECTION</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Card 1: Calibration -->
+                <div class="relative group h-[400px] overflow-hidden fade-in bg-white/5 border border-white/5">
+                    <img src="https://images.pexels.com/photos/29268644/pexels-photo-29268644.jpeg" alt="Calibration"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-10 text-white z-10">
+                        <span class="text-primary text-2xl font-light italic block mb-4">P1.</span>
+                        <h4 class="text-2xl font-bold uppercase tracking-tighter mb-4">Calibration</h4>
+                        <p class="opacity-90 text-xs leading-relaxed max-w-xs">Every movement is individually calibrated
+                            beyond standards before transit to ensure absolute chronometric precision.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Resilience -->
+                <div class="relative group h-[400px] overflow-hidden fade-in bg-white/5 border border-white/5"
+                    style="transition-delay: 0.1s;">
+                    <img src="https://images.pexels.com/photos/35989303/pexels-photo-35989303.jpeg" alt="Resilience"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-10 text-white z-10">
+                        <span class="text-primary text-2xl font-light italic block mb-4">P2.</span>
+                        <h4 class="text-2xl font-bold uppercase tracking-tighter mb-4">Resilience</h4>
+                        <p class="opacity-90 text-xs leading-relaxed max-w-xs">Aerospatial-grade materials (Grade 5
+                            Titanium and Forged Carbon) to ensure survivability in all extreme environments.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Visibility -->
+                <div class="relative group h-[400px] overflow-hidden fade-in bg-white/5 border border-white/5"
+                    style="transition-delay: 0.2s;">
+                    <img src="https://images.pexels.com/photos/36845965/pexels-photo-36845965.jpeg" alt="Visibility"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700"
+                        style="object-position: center bottom;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-10 text-white z-10">
+                        <span class="text-primary text-2xl font-light italic block mb-4">P3.</span>
+                        <h4 class="text-2xl font-bold uppercase tracking-tighter mb-4">Visibility</h4>
+                        <p class="opacity-90 text-xs leading-relaxed max-w-xs">Dual-layered high-grade Swiss
+                            Super-LumiNova® application for maximum legibility in zero-light conditions.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Integrity -->
+                <div class="relative group h-[400px] overflow-hidden fade-in bg-white/5 border border-white/5"
+                    style="transition-delay: 0.3s;">
+                    <img src="https://images.pexels.com/photos/18597524/pexels-photo-18597524.jpeg" alt="Integrity"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700"
+                        style="object-position: left;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-10 text-white">
+                        <span class="text-primary text-2xl font-light italic block mb-4">P4.</span>
+                        <h4 class="text-2xl font-bold uppercase tracking-tighter mb-4">Integrity</h4>
+                        <p class="opacity-90 text-xs leading-relaxed max-w-xs">Full transparency regarding component
+                            sourcing and atelier origin, ensuring ethical and honest horology.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Innovation -->
+                <div class="relative group h-[400px] overflow-hidden fade-in bg-white/5 border border-white/5"
+                    style="transition-delay: 0.4s;">
+                    <img src="images/hero.png" alt="Innovation"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700"
+                        style="object-position: top;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-10 text-white">
+                        <span class="text-primary text-2xl font-light italic block mb-4">P5.</span>
+                        <h4 class="text-2xl font-bold uppercase tracking-tighter mb-4">Innovation</h4>
+                        <p class="opacity-90 text-xs leading-relaxed max-w-xs">Continuous experimentation with
+                            avant-garde case geometries and high-frequency mechanical complications.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: Sustainability -->
+                <div class="relative group h-[400px] overflow-hidden fade-in bg-white/5 border border-white/5"
+                    style="transition-delay: 0.5s;">
+                    <img src="https://images.pexels.com/photos/34371258/pexels-photo-34371258.jpeg" alt="Sustainability"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700"
+                        style="object-position: right;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-10 text-white">
+                        <span class="text-primary text-2xl font-light italic block mb-4">P6.</span>
+                        <h4 class="text-2xl font-bold uppercase tracking-tighter mb-4">Sustainability</h4>
+                        <p class="opacity-90 text-xs leading-relaxed max-w-xs">Ethical component sourcing and lifetime
+                            serviceability protocols designed for generational legacy and minimal impact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: The Brand Ethos -->
+    <section class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="w-full lg:w-1/2 fade-in">
+                    <img src="images/hero.png" alt="Ethos" class="w-full grayscale border border-white/5 shadow-2xl">
+                </div>
+                <div class="w-full lg:w-1/2 fade-in text-center lg:text-left mt-12 lg:mt-0 text-black dark:text-white">
+                    <h2 class="text-sm uppercase tracking-[0.4em] text-primary mb-6 font-bold">Our DNA</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-8 tracking-tighter leading-tight text-black dark:text-white">THE ART OF
+                        INDEPENDENT <span class="text-primary italic">THINKING.</span></h3>
+                    <p class="text-lg opacity-70 leading-relaxed mb-10 mx-auto lg:mx-0 max-w-xl text-black dark:text-white">
+                        Vermeil &amp; Co. represents a community of thinkers who value architectural design over branding. We
+                        partner with the boldest makers to ensure that your wrist tells a story that is uniquely yours.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 border-t border-white/5 pt-8 max-w-sm mx-auto lg:mx-0">
+                        <div>
+                            <span class="text-2xl font-bold text-primary block mb-1">100+</span>
+                            <span class="text-[10px] uppercase tracking-widest opacity-40">Unique Designs</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-primary block mb-1">Worldwide</span>
+                            <span class="text-[10px] uppercase tracking-widest opacity-40">Insured Shipping</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: The Circle of Trust -->
+    <section class="py-24 bg-white dark:bg-white/5 border-t border-black/5 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in text-black dark:text-white">
+                <h2 class="text-sm uppercase tracking-[0.4em] text-primary mb-4 font-bold">Collector Voice</h2>
+                <h3 class="text-4xl font-bold tracking-tight">THE CIRCLE OF TRUST</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 dark:text-white">
+                <div class="p-12 border border-black/10 dark:border-white/5 bg-secondary-fixed text-black dark:text-white shadow-xl fade-in">
+                    <p class="text-xl italic leading-relaxed mb-8">"Finding a platform that understands microbrands and Haute Joaillerie as
+                        deeply as Vermeil &amp; Co. does was a game changer for my collection."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-px bg-primary"></div>
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-70">Leo Thorne, Watch
+                            Critic</span>
+                    </div>
+                </div>
+                <div class="p-12 border border-black/10 dark:border-white/5 bg-secondary-fixed text-black dark:text-white shadow-xl fade-in"
+                    style="transition-delay: 0.1s;">
+                    <p class="text-xl italic leading-relaxed mb-8">"The transparency and technical support provided
+                        during the acquisition process made me a lifelong member."</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-px bg-primary"></div>
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-70">Sarah James,
+                            Collector</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-secondary dark:text-white py-20 border-t border-black/5 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="fade-in">
+                    <a href="index.html" class="flex items-center gap-4 mb-8 group">
+                        <img src="images/logo.png" alt="Vermeil &amp; Co. Logo" class="h-10 w-auto object-contain">
+                        <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+                    </a>
+                    <p class="opacity-80 mb-8 leading-relaxed">
+                        Vermeil &amp; Co. is a curated marketplace for the world's most exceptional microbrand watches and bespoke Haute Joaillerie. Luxury
+                        within reach.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="p-2 bg-black/5 dark:bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 text-black dark:text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="p-2 bg-black/5 dark:bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 text-black dark:text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="p-2 bg-black/5 dark:bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 text-black dark:text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="fade-in" style="transition-delay: 0.1s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Quick Links</h4>
+                    <ul class="space-y-4 text-sm opacity-80">
+                        <li><a href="index.html" class="hover:text-primary transition-all">Home</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Fine Jewelry</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">Watch Collections</a></li>
+                        <li><a href="about.html" class="hover:text-primary transition-all">Our Story</a></li>
+                        <li><a href="blog.html" class="hover:text-primary transition-all">Journal</a></li>
+                        <li><a href="contact.html" class="hover:text-primary transition-all">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="fade-in" style="transition-delay: 0.2s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Collections</h4>
+                    <ul class="space-y-4 text-sm opacity-80">
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Diamond Rings</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Haute Joaillerie</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Tennis Bracelets</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">Dive Watches</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">GMT Masters</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="fade-in" style="transition-delay: 0.3s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Join the Circle</h4>
+                    <p class="text-sm opacity-60 mb-6">Stay updated with our latest microbrand releases.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Email Address" required
+                            class="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 px-6 py-4 w-full text-sm focus:outline-none focus:border-primary transition-all rounded-l text-black dark:text-white">
+                        <button type="submit"
+                            class="bg-primary px-6 py-4 text-white hover:bg-accent transition-all rounded-r">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div
+                class="border-t border-white/5 pt-10 flex flex-col items-center opacity-70 text-xs tracking-widest uppercase text-center">
+                <p>&copy; 2026 Vermeil &amp; Co. Luxury Watches &amp; Fine Jewelry. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="bg-primary p-4 rounded-full text-white shadow-2xl hover:scale-110 transition-all">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer"
+        class="fixed top-0 right-0 h-screen w-full md:w-[450px] bg-white dark:bg-secondary z-[100] p-10 flex flex-col shadow-2xl">
+        <div class="flex justify-between items-center mb-12">
+            <h3 class="text-2xl font-bold tracking-tighter uppercase">My <span
+                    class="text-primary italic">Collection</span></h3>
+            <button id="cart-close" class="p-2 text-primary hover:rotate-90 transition-all">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="cart-items-list" class="flex-1 overflow-y-auto pr-4">
+            <!-- Items injected by JS -->
+        </div>
+
+        <div class="border-t border-white/5 pt-10 mt-10">
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">Total Value</span>
+                <span id="cart-total" class="text-2xl font-bold tracking-tighter text-primary">$0.00</span>
+            </div>
+            <button
+                class="btn-premium w-full bg-primary text-white py-6 font-bold uppercase tracking-[0.4em] text-xs shadow-xl">Complete
+                Acquisition</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="cart-toast" class="cart-toast">Item added to collection</div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

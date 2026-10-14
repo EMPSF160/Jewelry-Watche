@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Catalog | Vermeil &amp; Co. Luxury Watches &amp; Fine Jewelry</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#d4af37', secondary: '#14090e', accent: '#831843' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+        .shop-sidebar {
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .shop-sidebar {
+                transform: translateX(-100%);
+            }
+
+            .shop-sidebar.active {
+                transform: translateX(0);
+            }
+
+            [dir="rtl"] .shop-sidebar {
+                transform: translateX(100%);
+            }
+
+            [dir="rtl"] .shop-sidebar.active {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-[100] transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center transition-all duration-300">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <img src="images/logo.png" alt="Vermeil & Co. Logo" class="h-10 w-auto object-contain">
+                <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+            </a>
+            <div class="hidden xl:flex items-center space-x-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="jewelry.html" class="nav-link">Jewelry</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="shop.html" class="nav-link active">Shop</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hidden xl:flex items-center space-x-6">
+                <button id="rtl-toggle"
+                    class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-current"
+                    title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors"></button>
+                <button id="cart-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </button>
+                <a href="login.html"
+                    class="px-6 py-2 border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 uppercase text-sm font-bold tracking-widest text-xs">Login</a>
+            </div>
+            <button id="mobile-menu-btn" class="xl:hidden p-2 text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-secondary flex flex-col p-8 xl:hidden">
+        <div class="flex justify-between items-center mb-12">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <img src="images/logo.png" alt="Vermeil & Co. Logo" class="h-10 w-auto object-contain">
+                <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+            </a>
+            <button id="mobile-menu-close" class="p-2 text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6 text-xl text-white">
+            <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+            <a href="jewelry.html" class="hover:text-primary transition-colors">Jewelry</a>
+            <a href="academy.html" class="hover:text-primary transition-colors">Academy</a>
+            <a href="about.html" class="hover:text-primary transition-colors">About</a>
+            <a href="shop.html" class="text-primary font-bold">Shop</a>
+            <a href="blog.html" class="hover:text-primary transition-colors">Blog</a>
+            <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="mt-auto flex flex-col space-y-4">
+            <div class="flex items-center space-x-6 text-white mb-6">
+                <button id="rtl-toggle-mobile" class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-white" title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle-mobile"
+                    class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest">Theme</button>
+                <button id="cart-toggle-mobile"
+                    class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest relative">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-count-mobile" class="cart-badge">0</span>
+                </button>
+            </div>
+            <a href="login.html"
+                class="w-full py-4 text-center border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 uppercase text-sm font-bold tracking-widest">Login</a>
+        </div>
+    </div>
+
+    <!-- Hero Segment -->
+    <section
+        class="min-h-[75vh] relative flex items-center overflow-hidden border-b border-black/5 dark:border-white/5 bg-white dark:bg-secondary">
+        <div class="absolute inset-0 z-0">
+            <img src="images/j/bruceandyqq-jewelry-625725_1920.jpg" alt="Vermeil &amp; Co. Haute Joaillerie &amp; Horology Atelier"
+                class="w-full h-full object-cover opacity-80 dark:opacity-40">
+            <div class="absolute inset-0 bg-black/60 transition-colors duration-500"></div>
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-[#14090e] to-transparent h-40 bottom-0 top-auto dark:block hidden">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent h-60 dark:block hidden"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 pt-20 text-white">
+            <div class="max-w-4xl fade-in text-center mx-auto text-white px-6">
+                <h1 class="text-6xl md:text-9xl font-bold mb-6 tracking-tighter uppercase leading-[0.85] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+                    The <span class="text-primary italic">Atelier.</span>
+                </h1>
+                <div class="w-20 h-[2px] bg-primary mx-auto mb-8 shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
+                <p class="text-[10px] md:text-sm opacity-90 leading-relaxed mb-12 max-w-2xl mx-auto uppercase tracking-[0.5em] font-bold text-white drop-shadow-md">
+                    Curated Horology &amp; Haute Joaillerie. <br class="hidden md:block"> Independent Timepieces &amp; Certified Fine Jewelry.
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <span
+                        class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border border-primary/30 px-6 py-2">Certified Natural Diamonds &bull; Limited Calibers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Tools & Filter Segment -->
+    <section class="py-16 bg-white dark:bg-secondary border-b border-black/5 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div
+                class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 fade-in text-black dark:text-white text-center md:text-left">
+                <div>
+                    <h2 class="text-sm uppercase tracking-[0.4em] text-primary mb-2">Technical Registry</h2>
+                    <p class="text-xs opacity-40 uppercase tracking-[0.2em] font-bold">Discover our current technical
+                        selections.</p>
+                </div>
+                <div
+                    class="flex flex-wrap items-center justify-center md:justify-end lg:justify-center xl:justify-end gap-x-6 gap-y-4 mt-8 md:mt-0 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                    <span class="opacity-40">Filter by</span>
+                    <button id="filter-toggle"
+                        class="xl:hidden text-primary border border-primary/20 px-4 py-2 hover:bg-primary hover:text-white transition-all">Filter</button>
+                    <select
+                        class="bg-slate-100 dark:bg-white/5 border border-primary/30 focus:border-primary focus:outline-none py-3 px-6 cursor-pointer text-black dark:text-white transition-all duration-300 rounded-sm">
+                        <option value="all" class="bg-white text-black dark:bg-[#1a1a1a] dark:text-white">Latest
+                            Arrivals</option>
+                        <option value="price-asc" class="bg-white text-black dark:bg-[#1a1a1a] dark:text-white">Price
+                            (Low to High)</option>
+                        <option value="price-desc" class="bg-white text-black dark:bg-[#1a1a1a] dark:text-white">Price
+                            (High to Low)</option>
+                        <option value="vintage" class="bg-white text-black dark:bg-[#1a1a1a] dark:text-white">Legacy
+                            Pieces</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Shop Sidebar (Filters) -->
+                <aside id="shop-sidebar"
+                    class="shop-sidebar hidden xl:block w-full xl:w-72 flex-shrink-0 space-y-12 bg-secondary xl:bg-transparent p-10 xl:p-0 fixed xl:relative inset-0 xl:inset-auto z-[120] xl:z-0 overflow-y-auto xl:overflow-visible transition-transform duration-500">
+                    <div class="flex justify-between items-center xl:hidden mb-12">
+                        <h3 class="text-2xl font-bold tracking-tighter uppercase">Filter <span
+                                class="text-primary italic">Registry</span></h3>
+                        <button id="sidebar-close" class="p-2 text-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div>
+                        <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 mb-6">Collections</h4>
+                        <ul class="space-y-4 text-sm font-medium dark:text-white/80">
+                            <li
+                                class="flex justify-between items-center hover:text-primary transition-all cursor-pointer">
+                                <a href="jewelry.html" class="flex justify-between items-center w-full group">
+                                    <span class="text-primary font-bold group-hover:underline">Haute Joaillerie</span>
+                                    <span class="opacity-40 text-xs font-mono">06</span>
+                                </a>
+                            </li>
+                            <li
+                                class="flex justify-between items-center hover:text-primary transition-all cursor-pointer">
+                                <span>Deep Sea Voyager</span>
+                                <span class="opacity-40 text-xs font-mono">12</span>
+                            </li>
+                            <li class="flex justify-between items-center text-primary font-bold">
+                                <span>Mechanical Art</span>
+                                <span class="opacity-40 text-xs font-mono">08</span>
+                            </li>
+                            <li
+                                class="flex justify-between items-center hover:text-primary transition-all cursor-pointer">
+                                <span>Dress Legacy</span>
+                                <span class="opacity-40 text-xs font-mono">05</span>
+                            </li>
+                            <li
+                                class="flex justify-between items-center hover:text-primary transition-all cursor-pointer">
+                                <span>Aviation Series</span>
+                                <span class="opacity-40 text-xs font-mono">14</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 mb-6">Movement Type</h4>
+                        <div class="space-y-3 dark:text-white/80">
+                            <label class="flex items-center space-x-3 cursor-pointer group">
+                                <input type="checkbox" class="accent-primary w-4 h-4">
+                                <span class="text-sm opacity-60 group-hover:opacity-100 transition-all">Japanese
+                                    Automatic</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer group">
+                                <input type="checkbox" class="accent-primary w-4 h-4">
+                                <span class="text-sm opacity-60 group-hover:opacity-100 transition-all">Swiss
+                                    Mechanical</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer group">
+                                <input type="checkbox" class="accent-primary w-4 h-4">
+                                <span class="text-sm opacity-60 group-hover:opacity-100 transition-all">Solar
+                                    Hybrid</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 mb-6">Price Range</h4>
+                        <input type="range" class="w-full accent-primary h-1 bg-white/10 rounded-full appearance-none">
+                        <div class="flex justify-between text-[10px] font-mono opacity-40 pt-4">
+                            <span>$400</span>
+                            <span>$5,000+</span>
+                        </div>
+                    </div>
+
+                    <!-- New Content to fill gap -->
+                    <div class="pt-10 border-t border-white/5 space-y-10 fade-in">
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-6">Atelier
+                                Pledge</h4>
+                            <div class="space-y-6">
+                                <div class="flex gap-4 items-start">
+                                    <div
+                                        class="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary text-[8px] font-bold">
+                                        01</div>
+                                    <p
+                                        class="text-[10px] opacity-40 leading-relaxed uppercase tracking-widest font-bold">
+                                        2-Year International Warranty on all calibers</p>
+                                </div>
+                                <div class="flex gap-4 items-start">
+                                    <div
+                                        class="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary text-[8px] font-bold">
+                                        02</div>
+                                    <p
+                                        class="text-[10px] opacity-40 leading-relaxed uppercase tracking-widest font-bold">
+                                        Complimentary Secure global logistics</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="p-8 bg-white/5 border border-white/5 group hover:border-primary/40 transition-all duration-500">
+                            <span
+                                class="text-[8px] text-primary font-bold uppercase tracking-[0.4em] mb-4 block">Archive
+                                Spotlight</span>
+                            <p class="text-xs italic opacity-60 leading-relaxed font-light">"The sound of a mechanical
+                                heart is the only frequency that matters."</p>
+                            <span class="block mt-4 text-[10px] font-bold uppercase tracking-widest opacity-30">— Elias
+                                Thorne, Founder</span>
+                        </div>
+
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 mb-6">Maintenance
+                                Protocol</h4>
+                            <ul class="space-y-4 text-[10px] font-bold uppercase tracking-widest opacity-40">
+                                <li class="hover:text-primary transition-all cursor-pointer">Cleaning Guide</li>
+                                <li class="hover:text-primary transition-all cursor-pointer">Calibration Service</li>
+                                <li class="hover:text-primary transition-all cursor-pointer">Authenticity Papers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Product Grid -->
+                <div class="flex-1 overflow-hidden">
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-10 dark:text-white">
+                        <!-- Jewelry 1: Grand Joaillerie Parure Suite -->
+                        <div class="product-card group fade-in card-hover" data-category="jewelry">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/bruceandyqq-jewelry-625725_1920.jpg" alt="Grand Joaillerie Parure Suite" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">Haute Joaillerie</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Jewelry Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>Matched Diamond Parure</li>
+                                        <li>VVS1 Natural Diamonds</li>
+                                        <li>18K Solid Gold &bull; Platinum</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-j1" data-name="Grand Joaillerie Parure Suite" data-price="14500" data-image="images/j/bruceandyqq-jewelry-625725_1920.jpg">
+                                        Acquire Suite
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Necklace &amp; Rings</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">Grand Joaillerie Suite</h4>
+                                <span class="text-primary font-bold text-lg">$14,500.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Jewelry 2: Solitaire Diamond Imperial Ring -->
+                        <div class="product-card group fade-in card-hover" data-category="jewelry">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/lobostudiohamburg-ring-66598_1920.jpg" alt="Solitaire Diamond Imperial Ring" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">GIA Certified</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Diamond Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>2.50ct Round Brilliant</li>
+                                        <li>D Colorless &bull; VVS1</li>
+                                        <li>Solid 950 Platinum</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-j2" data-name="Solitaire Diamond Imperial Ring" data-price="4850" data-image="images/j/lobostudiohamburg-ring-66598_1920.jpg">
+                                        Acquire Ring
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Diamond Rings</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">Solitaire Imperial Ring</h4>
+                                <span class="text-primary font-bold text-lg">$4,850.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Jewelry 3: Chandelier Pavé Drop Earrings -->
+                        <div class="product-card group fade-in card-hover" data-category="jewelry">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/aestheticjourney-earrings-8310858_1920.jpg" alt="Chandelier Pavé Drop Earrings" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">Atelier Statement</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Earrings Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>Tiered Diamond Drops</li>
+                                        <li>Pavé Crystalline Lattice</li>
+                                        <li>18K White Gold Clips</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-j3" data-name="Chandelier Pavé Drop Earrings" data-price="3920" data-image="images/j/aestheticjourney-earrings-8310858_1920.jpg">
+                                        Acquire Earrings
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Statement Earrings</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">Chandelier Pavé Drops</h4>
+                                <span class="text-primary font-bold text-lg">$3,920.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Jewelry 4: South Sea Cultured Pearl Strand -->
+                        <div class="product-card group fade-in card-hover" data-category="jewelry">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/anestiev-pearls-4216965_1920.jpg" alt="South Sea Cultured Pearl Strand" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">Natural Pearls</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Pearl Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>10-12mm South Sea Pearls</li>
+                                        <li>Hand-Knotted Pure Silk</li>
+                                        <li>18K Gold Ball Clasp</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-j4" data-name="South Sea Cultured Pearl Strand" data-price="3600" data-image="images/j/anestiev-pearls-4216965_1920.jpg">
+                                        Acquire Strand
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Pearl Joaillerie</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">South Sea Pearl Strand</h4>
+                                <span class="text-primary font-bold text-lg">$3,600.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Jewelry 5: 18K Solid Gold Link Chain -->
+                        <div class="product-card group fade-in card-hover" data-category="jewelry">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/hans-chain-2119611_1920.jpg" alt="18K Solid Gold Italian Link Chain" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">18K Solid Gold</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Chain Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>45 Grams 18K Yellow Gold</li>
+                                        <li>Precision Italian Curb Links</li>
+                                        <li>Hand-Polished Box Lock</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-j5" data-name="18K Solid Gold Italian Link Chain" data-price="2850" data-image="images/j/hans-chain-2119611_1920.jpg">
+                                        Acquire Chain
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Chains &amp; Links</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">18K Italian Link Chain</h4>
+                                <span class="text-primary font-bold text-lg">$2,850.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Jewelry 6: Lightning Ridge Black Opal Pendant -->
+                        <div class="product-card group fade-in card-hover" data-category="jewelry">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/hans-opal-4765457_1920.jpg" alt="Lightning Ridge Black Opal Pendant" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">Australian Opal</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Opal Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>3.80ct Lightning Ridge Opal</li>
+                                        <li>Electric Green &amp; Blue Fire</li>
+                                        <li>18K Yellow Gold Bezel</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-j6" data-name="Lightning Ridge Black Opal Pendant" data-price="4100" data-image="images/j/hans-opal-4765457_1920.jpg">
+                                        Acquire Pendant
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Rare Gemstones</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">Lightning Ridge Opal Pendant</h4>
+                                <span class="text-primary font-bold text-lg">$4,100.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Jewelry 7: Eternal Promise Wedding Bands -->
+                        <div class="product-card group fade-in card-hover" data-category="jewelry">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/scottwebb-wedding-1594957_1920.jpg" alt="Eternal Promise Wedding Bands" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">Bridal Suite</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Band Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>Pair of Ergonomic Bands</li>
+                                        <li>Hand-Burnished Satin Gold</li>
+                                        <li>Solid 18K &bull; Platinum Option</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-j7" data-name="Eternal Promise Wedding Bands" data-price="2400" data-image="images/j/scottwebb-wedding-1594957_1920.jpg">
+                                        Acquire Bands
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Bridal &amp; Eternity</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">Eternal Promise Bands</h4>
+                                <span class="text-primary font-bold text-lg">$2,400.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Heritage Timepiece: Pocket Watch -->
+                        <div class="product-card group fade-in card-hover" data-category="watches">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="images/j/stocksnap-pocket-watch-2569573_1920.jpg" alt="Heritage Complication Pocket Watch" class="w-full h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase shadow-md">Heritage Horology</span>
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-4">
+                                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-primary border-b border-primary/40 pb-2">Caliber Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/90 space-y-2">
+                                        <li>Manual Wind Chronometer</li>
+                                        <li>Blued Breguet Hands</li>
+                                        <li>Solid Silver &amp; Vermeil Case</li>
+                                    </ul>
+                                    <button class="add-to-cart bg-primary hover:bg-accent text-white py-3 px-6 text-[10px] font-bold tracking-[0.2em] uppercase transition-all shadow-xl"
+                                        data-id="shop-w-pocket" data-name="Heritage Complication Pocket Watch" data-price="6200" data-image="images/j/stocksnap-pocket-watch-2569573_1920.jpg">
+                                        Acquire Watch
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-primary font-bold">Heritage Vault</span>
+                                <h4 class="text-xl font-bold mb-1 tracking-tighter">Heritage Pocket Watch</h4>
+                                <span class="text-primary font-bold text-lg">$6,200.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Watch Pieces -->
+                        <div class="product-card group fade-in card-hover" data-category="watches">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/14725371/pexels-photo-14725371.jpeg"
+                                    alt="Piece 1" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <p
+                                        class="text-[10px] uppercase tracking-[0.4em] font-bold text-white border-b border-primary pb-2">
+                                        Technical Specs</p>
+                                    <ul class="text-[10px] uppercase tracking-widest text-white/70 space-y-2">
+                                        <li>NH35 Automatic</li>
+                                        <li>316L Stainless</li>
+                                        <li>Sapphire Crystal</li>
+                                    </ul>
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s1" data-name="Ocean Diver X" data-price="1450"
+                                        data-image="https://images.pexels.com/photos/14725371/pexels-photo-14725371.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center gap-4 px-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1 tracking-tighter">Ocean Diver X</h4>
+                                    <p class="text-[10px] opacity-40 uppercase tracking-widest font-bold">Limited Series
+                                        / 050</p>
+                                </div>
+                                <span class="text-primary font-bold text-lg leading-none">$1,450.00</span>
+                            </div>
+                        </div>
+
+                        <div class="group fade-in card-hover" style="transition-delay: 0.1s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/11164723/pexels-photo-11164723.jpeg"
+                                    alt="Piece 2" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                                <div
+                                    class="absolute top-4 right-4 bg-primary text-white px-3 py-1 text-[8px] font-bold tracking-[0.3em] uppercase">
+                                    Sold Out</div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Vintage Carbon</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Mechanical Legacy
+                                    </p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$2,100.00</span>
+                            </div>
+                        </div>
+
+                        <div class="group fade-in card-hover" style="transition-delay: 0.2s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/31321625/pexels-photo-31321625.jpeg"
+                                    alt="Piece 3" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s3" data-name="Dress Master" data-price="980"
+                                        data-image="https://images.pexels.com/photos/31321625/pexels-photo-31321625.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Dress Master</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Pure Aesthetics
+                                    </p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$980.00</span>
+                            </div>
+                        </div>
+
+                        <div class="group fade-in card-hover" style="transition-delay: 0.3s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/6166395/pexels-photo-6166395.jpeg"
+                                    alt="Piece 4" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s4" data-name="Chronograph G1" data-price="3200"
+                                        data-image="https://images.pexels.com/photos/6166395/pexels-photo-6166395.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Chronograph G1</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Aerospace Grade
+                                    </p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$3,200.00</span>
+                            </div>
+                        </div>
+
+                        <!-- New Pieces -->
+                        <div class="group fade-in card-hover">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/10347090/pexels-photo-10347090.jpeg"
+                                    alt="Piece 5" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s5" data-name="Aviator Bronze" data-price="1850"
+                                        data-image="https://images.pexels.com/photos/10347090/pexels-photo-10347090.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Aviator Bronze</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Patina Journey</p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$1,850.00</span>
+                            </div>
+                        </div>
+
+                        <div class="group fade-in card-hover" style="transition-delay: 0.1s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/28977357/pexels-photo-28977357.jpeg"
+                                    alt="Piece 6" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s6" data-name="Night Ops Field" data-price="750"
+                                        data-image="https://images.pexels.com/photos/28977357/pexels-photo-28977357.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Night Ops Field</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Stealth Ops</p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$750.00</span>
+                            </div>
+                        </div>
+
+                        <div class="group fade-in card-hover" style="transition-delay: 0.2s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/4863073/pexels-photo-4863073.jpeg"
+                                    alt="Piece 7" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s7" data-name="Solar Diver" data-price="1100"
+                                        data-image="https://images.pexels.com/photos/4863073/pexels-photo-4863073.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Solar Diver</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Endless Energy</p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$1,100.00</span>
+                            </div>
+                        </div>
+
+                        <div class="group fade-in card-hover" style="transition-delay: 0.3s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/10270196/pexels-photo-10270196.jpeg"
+                                    alt="Piece 8" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s8" data-name="Titanium Racer" data-price="2800"
+                                        data-image="https://images.pexels.com/photos/10270196/pexels-photo-10270196.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Titanium Racer</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Ultra Lightweight
+                                    </p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$2,800.00</span>
+                            </div>
+                        </div>
+
+                        <div class="group fade-in card-hover" style="transition-delay: 0.1s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/33496220/pexels-photo-33496220.jpeg"
+                                    alt="Piece 9" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s9" data-name="GMT Master II" data-price="3500"
+                                        data-image="https://images.pexels.com/photos/33496220/pexels-photo-33496220.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1 tracking-tighter">GMT Master II</h4>
+                                    <p class="text-[10px] opacity-40 uppercase tracking-widest font-bold">Global Horizon
+                                    </p>
+                                </div>
+                                <span class="text-primary font-bold text-lg leading-none">$3,500.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Piece 10 -->
+                        <div class="group fade-in card-hover lg:col-start-2 xl:col-start-auto" style="transition-delay: 0.2s;">
+                            <div class="img-zoom relative bg-white/5 aspect-[3/4] overflow-hidden mb-6">
+                                <img src="https://images.pexels.com/photos/9204686/pexels-photo-9204686.jpeg"
+                                    alt="Piece 10"
+                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-transform duration-700">
+                                <div
+                                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-8 text-center space-y-6">
+                                    <button
+                                        class="add-to-cart bg-primary text-white py-4 px-8 text-[10px] font-bold tracking-[0.2em] transform translate-y-4 group-hover:translate-y-0 transition-all"
+                                        data-id="s10" data-name="Lunar GMT Series" data-price="3450"
+                                        data-image="https://images.pexels.com/photos/9204686/pexels-photo-9204686.jpeg">Acquire Piece</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center px-2 space-y-2">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Lunar GMT Series</h4>
+                                    <p class="text-xs opacity-40 uppercase tracking-widest font-bold">Intercontinental
+                                        Precision</p>
+                                </div>
+                                <span class="text-primary font-bold text-lg">$3,450.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-24 flex justify-center items-center space-x-12 fade-in">
+                        <a href="#"
+                            class="text-xs font-bold text-primary border-b border-primary pb-2 tracking-[0.2em]">01</a>
+                        <a href="#"
+                            class="text-xs font-bold text-white/60 hover:text-white transition-all tracking-[0.2em]">02</a>
+                        <a href="#"
+                            class="text-xs font-bold text-white/60 hover:text-white transition-all tracking-[0.2em]">03</a>
+                        <a href="#"
+                            class="text-xs font-bold text-white/80 hover:text-primary transition-all flex items-center gap-4 tracking-[0.2em] uppercase">
+                            Next Collection
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-20 border-t border-black/5 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="fade-in">
+                    <a href="index.html" class="flex items-center gap-4 mb-8 group">
+                        <img src="images/logo.png" alt="Vermeil & Co. Logo" class="h-10 w-auto object-contain">
+                        <span class="text-2xl font-bold tracking-tighter text-primary">VERMEIL &amp; CO.</span>
+                    </a>
+                    <p class="opacity-70 mb-8 leading-relaxed text-sm">
+                        Curators of independent Swiss microbrand watches and bespoke Haute Joaillerie fine jewelry.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 transition-all text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                        </a>
+                        <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 transition-all text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+                        </a>
+                        <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-accent hover:text-white hover:scale-125 transition-all text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="fade-in" style="transition-delay: 0.1s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Quick Links</h4>
+                    <ul class="space-y-4 text-sm opacity-80">
+                        <li><a href="index.html" class="hover:text-primary transition-all">Home</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Fine Jewelry</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">Watch Collections</a></li>
+                        <li><a href="about.html" class="hover:text-primary transition-all">Our Story</a></li>
+                        <li><a href="blog.html" class="hover:text-primary transition-all">Journal</a></li>
+                        <li><a href="contact.html" class="hover:text-primary transition-all">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="fade-in" style="transition-delay: 0.2s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Collections</h4>
+                    <ul class="space-y-4 text-sm opacity-80">
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Diamond Rings</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Haute Joaillerie</a></li>
+                        <li><a href="jewelry.html" class="hover:text-primary transition-all">Tennis Bracelets</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">Dive Watches</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-all">GMT Masters</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="fade-in" style="transition-delay: 0.3s;">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-8 text-primary">Join the Circle</h4>
+                    <p class="text-sm opacity-70 mb-6">Receive salon invitations and newly certified diamond releases.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Email Address" required
+                            class="bg-black/20 border border-white/10 px-6 py-4 w-full text-sm focus:outline-none focus:border-primary transition-all rounded-l text-white">
+                        <button type="submit"
+                            class="bg-primary px-6 py-4 text-white hover:bg-accent transition-all rounded-r">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div
+                class="border-t border-white/10 pt-10 flex flex-col items-center opacity-70 text-xs tracking-widest uppercase text-center">
+                <p>&copy; 2026 Vermeil &amp; Co. Luxury Watches &amp; Fine Jewelry. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top (Same for all) -->
+    <button id="scroll-to-top" class="bg-primary p-4 rounded-full text-white shadow-2xl hover:scale-110 transition-all">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer"
+        class="fixed top-0 right-0 h-screen w-full md:w-[450px] bg-secondary z-[100] p-10 flex flex-col shadow-2xl">
+        <div class="flex justify-between items-center mb-12">
+            <h3 class="text-2xl font-bold tracking-tighter uppercase">My <span
+                    class="text-primary italic">Collection</span></h3>
+            <button id="cart-close" class="p-2 text-primary hover:rotate-90 transition-all">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="cart-items-list" class="flex-1 overflow-y-auto pr-4">
+            <!-- Items injected by JS -->
+        </div>
+
+        <div class="border-t border-white/5 pt-10 mt-10">
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">Total Value</span>
+                <span id="cart-total" class="text-2xl font-bold tracking-tighter text-primary">$0.00</span>
+            </div>
+            <button
+                class="btn-premium w-full bg-primary text-white py-6 font-bold uppercase tracking-[0.4em] text-xs shadow-xl">Complete
+                Acquisition</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="cart-toast" class="cart-toast">Item added to collection</div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Shop specific sidebar logic
+        const filterToggle = document.getElementById('filter-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const shopSidebar = document.getElementById('shop-sidebar');
+
+        if (filterToggle && shopSidebar) {
+            filterToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                shopSidebar.classList.remove('hidden');
+                setTimeout(() => shopSidebar.classList.add('active'), 10);
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (sidebarClose && shopSidebar) {
+            sidebarClose.addEventListener('click', () => {
+                shopSidebar.classList.remove('active');
+                setTimeout(() => {
+                    shopSidebar.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 500);
+            });
+        }
+    </script>
+</body>
+
+</html>

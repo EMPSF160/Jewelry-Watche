@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy of Haute Horlogerie & Fine Jewelry | Vermeil &amp; Co.</title>
+    <meta name="description" content="Accredited Ed-Tech Learning Portal for Fine Jewelry, Diamond Grading, and Swiss Watchmaking Skills. Video lessons, downloadable blueprints, quizzes, and master mentors.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#d4af37', // Vintage Luxury Gold
+                        secondary: '#14090e', // Deep Burgundy Onyx
+                        accent: '#831843', // Burgundy Velvet
+                        surface: '#1c0d14'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body class="bg-[#fcf9f7] dark:bg-[#14090e] text-[#2b1f24] dark:text-[#fbf6f3] transition-colors duration-300">
+
+    <!-- Top Announcement Bar with Clear Boutique Exit Link -->
+    <div class="bg-accent text-white py-2 px-6 text-xs font-semibold tracking-wider flex justify-between items-center z-50 relative border-b border-white/10">
+        <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span>VERMEIL SKILLS ACADEMY • ACCREDITED GEMOLOGICAL &amp; HOROLOGICAL CURRICULUM</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="flex items-center gap-1.5 text-primary hover:text-white transition-colors uppercase font-bold text-[11px] tracking-widest bg-black/30 px-3 py-1 rounded">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span>Exit to Main Boutique</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Academy Header -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-secondary/95 backdrop-blur-md border-b border-black/5 dark:border-white/10 transition-colors">
+        <nav class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <div class="flex items-center gap-6">
+                <a href="academy.html" class="flex items-center gap-4 group">
+                    <img src="images/logo.png" alt="Vermeil &amp; Co. Academy" class="h-10 w-auto object-contain">
+                    <div>
+                        <span class="text-xl font-bold tracking-tighter text-primary block leading-none">VERMEIL ACADEMY</span>
+                        <span class="text-[9px] uppercase tracking-[0.3em] opacity-60 block mt-0.5">Haute Horlogerie &amp; Gemology</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Portal Navigation Links -->
+            <div class="hidden xl:flex items-center gap-7 text-xs font-bold uppercase tracking-widest">
+                <a href="#video-player-section" class="hover:text-primary transition-colors">Lessons</a>
+                <a href="#analytics-section" class="hover:text-primary transition-colors">Student Analytics</a>
+                <a href="#quiz-section" class="hover:text-primary transition-colors">Examination</a>
+                <a href="#resources-section" class="hover:text-primary transition-colors">Resource Vault</a>
+                <a href="#instructors-section" class="hover:text-primary transition-colors">Instructors</a>
+                <a href="jewelry.html" class="text-primary hover:text-white transition-colors flex items-center gap-1">
+                    <span>Jewelry Atelier</span>
+                </a>
+            </div>
+
+            <!-- Utilities: Exit Button + RTL + Theme -->
+            <div class="hidden xl:flex items-center space-x-4">
+                <a href="index.html" class="px-4 py-2 rounded border border-primary/40 text-primary hover:bg-primary hover:text-secondary text-xs font-bold uppercase tracking-widest transition-all flex items-center gap-1.5" title="Return to store homepage">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    <span>Exit Portal</span>
+                </a>
+
+                <button id="rtl-toggle"
+                    class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-current"
+                    title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors" title="Toggle Dark/Light Mode"></button>
+            </div>
+
+            <!-- Mobile Trigger -->
+            <button id="mobile-menu-btn" class="xl:hidden p-2 text-primary" aria-label="Open Academy Menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Slide-out Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-secondary flex flex-col p-8 xl:hidden">
+        <div class="flex justify-between items-center mb-10">
+            <a href="academy.html" class="flex items-center gap-3">
+                <img src="images/logo.png" alt="Vermeil &amp; Co. Academy" class="h-9 w-auto object-contain">
+                <span class="text-xl font-bold tracking-tighter text-primary">VERMEIL ACADEMY</span>
+            </a>
+            <button id="mobile-menu-close" class="p-2 text-primary">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-5 text-lg text-white">
+            <a href="#video-player-section" class="hover:text-primary transition-colors">Video Lessons</a>
+            <a href="#analytics-section" class="hover:text-primary transition-colors">Student Analytics</a>
+            <a href="#quiz-section" class="hover:text-primary transition-colors">Certification Quiz</a>
+            <a href="#resources-section" class="hover:text-primary transition-colors">Resource Vault</a>
+            <a href="#instructors-section" class="hover:text-primary transition-colors">Instructor Directory</a>
+            <div class="border-t border-white/10 pt-4 mt-2">
+                <a href="index.html" class="text-primary font-bold flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    <span>Exit to Main Boutique</span>
+                </a>
+            </div>
+        </div>
+        <div class="mt-auto flex items-center space-x-6 text-white pt-6 border-t border-white/10">
+            <button id="rtl-toggle-mobile" class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-white" title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
+                </svg>
+            </button>
+            <button id="theme-toggle-mobile" class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest">Theme</button>
+        </div>
+    </div>
+
+    <!-- Student Dashboard Hero Bar -->
+    <section class="bg-gradient-to-r from-[#1c0d14] via-[#14090e] to-[#250d19] border-b border-white/10 py-10 text-white relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <!-- Candidate Info -->
+                <div class="flex items-center gap-5">
+                    <div class="relative">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-accent to-primary p-0.5 shadow-xl">
+                            <div class="w-full h-full rounded-full bg-secondary flex items-center justify-center text-primary font-bold text-xl">
+                                JD
+                            </div>
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-green-500 border-2 border-secondary" title="Active in Atelier"></span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <h1 class="text-2xl font-bold tracking-tight">Julien De Vere</h1>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30">Candidate No. VM-884</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Master Diploma in Haute Horlogerie &amp; Fine Gemological Craftsmanship</p>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full lg:w-auto text-center">
+                    <div class="p-3 rounded bg-white/5 border border-white/5">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Progress</span>
+                        <span class="text-lg font-bold text-primary" id="analytics-progress-pct">78%</span>
+                    </div>
+                    <div class="p-3 rounded bg-white/5 border border-white/5">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Bench Hours</span>
+                        <span class="text-lg font-bold text-white">28.4 hrs</span>
+                    </div>
+                    <div class="p-3 rounded bg-white/5 border border-white/5">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Evaluation</span>
+                        <span class="text-lg font-bold text-green-400">96% (Grade A)</span>
+                    </div>
+                    <div class="p-3 rounded bg-white/5 border border-white/5">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Experience</span>
+                        <span class="text-lg font-bold text-primary" id="analytics-xp-count">1,850 XP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: VIDEO LESSON PLAYER & SYLLABUS CURRICULUM -->
+    <section id="video-player-section" class="py-16 bg-[#faf5f1] dark:bg-[#14090e] transition-colors">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-primary font-bold text-xs uppercase tracking-[0.3em] block mb-2">Master Atelier Classroom</span>
+                    <h2 class="text-3xl font-bold tracking-tight uppercase">High-Definition Lesson Player</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span id="player-pulse-badge" class="px-3 py-1 rounded bg-accent/30 border border-accent text-[11px] font-bold text-white uppercase tracking-wider">
+                        READY • 1080P PRO MASTER FEED
+                    </span>
+                    <button id="complete-lesson-btn" class="px-4 py-2 rounded bg-primary text-secondary hover:bg-primary/90 font-bold text-xs uppercase tracking-wider transition-all flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Mark Lesson Complete</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Player & Playlist Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Video Player Container (8 cols) -->
+                <div class="lg:col-span-8 bg-black rounded-lg border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+                    <!-- Video Frame Viewport -->
+                    <div class="relative w-full aspect-video bg-neutral-900 overflow-hidden group select-none flex items-center justify-center" id="lesson-video-frame">
+                        <img id="player-video-poster" src="images/j/stocksnap-pocket-watch-2569573_1920.jpg" alt="Active Lesson" class="absolute inset-0 w-full h-full object-cover opacity-85 transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40"></div>
+
+                        <!-- Big Center Play Button Overlay -->
+                        <button id="player-overlay-btn" class="relative z-20 w-20 h-20 rounded-full bg-primary/90 text-secondary hover:bg-primary hover:scale-110 transition-all flex items-center justify-center shadow-2xl cursor-pointer" aria-label="Play Lesson Video">
+                            <svg class="w-10 h-10 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+
+                        <!-- Top Lesson Metadata Tag -->
+                        <div class="absolute top-4 left-4 z-20 flex items-center gap-3">
+                            <span id="current-lesson-module" class="px-3 py-1 rounded bg-black/60 backdrop-blur-md text-primary text-xs font-bold uppercase tracking-wider border border-white/10">Module 2</span>
+                            <span id="current-lesson-category" class="px-3 py-1 rounded bg-accent/80 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider">Horology</span>
+                        </div>
+                    </div>
+
+                    <!-- Video Controls Bar -->
+                    <div class="p-4 bg-[#180a12] border-t border-white/10 flex flex-col gap-3">
+                        <!-- Scrubber Track -->
+                        <div id="player-progress-track" class="w-full h-2 rounded bg-white/20 hover:h-3 transition-all cursor-pointer relative overflow-hidden">
+                            <div id="player-progress-bar" class="h-full bg-primary transition-all duration-100" style="width: 25%;"></div>
+                        </div>
+
+                        <!-- Buttons Row -->
+                        <div class="flex items-center justify-between text-white text-xs">
+                            <div class="flex items-center gap-4">
+                                <button id="player-play-btn" class="p-2 rounded hover:bg-white/10 text-primary transition-colors" aria-label="Play/Pause">
+                                    <svg id="player-play-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </button>
+                                <span id="player-time-display" class="font-mono text-gray-300">07:00 / 28:50</span>
+                                <div class="hidden sm:flex items-center gap-1.5 text-gray-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M12 6v12m-4-6h.01"></path></svg>
+                                    <span>High Fidelity Audio</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <!-- Speed Control -->
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-gray-400 text-[10px] uppercase">Speed:</span>
+                                    <select id="player-speed-select" class="bg-black/40 border border-white/10 rounded px-2 py-1 text-primary text-xs font-bold focus:outline-none focus:border-primary">
+                                        <option value="0.75">0.75x</option>
+                                        <option value="1.0" selected>1.0x</option>
+                                        <option value="1.25">1.25x</option>
+                                        <option value="1.5">1.5x</option>
+                                        <option value="2.0">2.0x</option>
+                                    </select>
+                                </div>
+                                <span class="px-2 py-1 bg-white/10 rounded text-[10px] font-mono text-gray-300">1080p HD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson Information & Tabs -->
+                    <div class="p-6 bg-white dark:bg-[#1a0c14] border-t border-black/5 dark:border-white/5">
+                        <div class="mb-6">
+                            <h3 id="current-lesson-title" class="text-xl font-bold text-secondary dark:text-white mb-1">Swiss Lever Escapement &amp; Balance Wheel Dynamics</h3>
+                            <p id="current-lesson-instructor" class="text-xs text-primary font-medium">Instructor: Philippe Laurent, Master Horologist</p>
+                        </div>
+
+                        <!-- Tab Headers -->
+                        <div class="flex border-b border-black/10 dark:border-white/10 space-x-6 text-xs font-bold uppercase tracking-wider mb-6">
+                            <button class="lesson-tab-btn active pb-3 text-primary border-b-2 border-primary transition-colors" data-tab="notes">Lesson Notes &amp; Protocols</button>
+                            <button class="lesson-tab-btn pb-3 text-gray-400 hover:text-primary transition-colors" data-tab="transcript">Interactive Transcript</button>
+                            <button class="lesson-tab-btn pb-3 text-gray-400 hover:text-primary transition-colors" data-tab="discussion">Ask the Master</button>
+                        </div>
+
+                        <!-- Tab Panels -->
+                        <div id="tab-panel-notes" class="lesson-tab-panel text-sm text-gray-700 dark:text-gray-300">
+                            <!-- Injected by academy.js -->
+                        </div>
+
+                        <div id="tab-panel-transcript" class="lesson-tab-panel hidden space-y-2 max-h-60 overflow-y-auto pr-2">
+                            <!-- Injected by academy.js -->
+                        </div>
+
+                        <div id="tab-panel-discussion" class="lesson-tab-panel hidden text-sm">
+                            <p class="text-xs text-gray-400 mb-4">Have questions regarding escapement tolerances or loupe angles? Post directly to Master Philippe Laurent's bench.</p>
+                            <form onsubmit="event.preventDefault(); alert('Inquiry dispatched to Master Instructor. Response will appear in your Atelier Inbox within 24 hours.'); this.reset();" class="space-y-3">
+                                <textarea required rows="3" placeholder="Describe your question or specific calibre observation..." class="w-full p-3 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs text-current focus:border-primary focus:outline-none"></textarea>
+                                <button type="submit" class="px-5 py-2.5 rounded bg-primary text-secondary hover:bg-primary/90 font-bold text-xs uppercase tracking-wider transition-all">Submit Inquiry to Master</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Syllabus & Curriculum Playlist (4 cols) -->
+                <div class="lg:col-span-4 bg-white dark:bg-[#1a0c14] border border-black/5 dark:border-white/10 rounded-lg p-6 shadow-xl flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold text-sm uppercase tracking-wider">Curriculum Syllabus</h4>
+                        <span id="analytics-modules-count" class="text-xs font-mono text-primary font-bold">1 / 5 Completed</span>
+                    </div>
+                    <p class="text-xs text-gray-400 mb-6">Select any module below to load its lecture video, hands-on bench notes, and micro-transcripts.</p>
+
+                    <!-- Modules List -->
+                    <div id="syllabus-playlist" class="space-y-3 max-h-[560px] overflow-y-auto pr-1">
+                        <!-- Injected by academy.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: STUDENT PROGRESS ANALYTICS & COMPETENCY RADAR -->
+    <section id="analytics-section" class="py-20 bg-white dark:bg-secondary border-t border-b border-black/5 dark:border-white/5 transition-colors">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mb-12">
+                <span class="text-primary font-bold text-xs uppercase tracking-[0.3em] block mb-2">Student Performance Intelligence</span>
+                <h2 class="text-3xl font-bold tracking-tight uppercase">Skills Analytics &amp; Mastery Tracking</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Comprehensive breakdown of your benchwork hours, theoretical examinations, and practical gemological grading milestones.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Radial Chart & Overview Card (5 cols) -->
+                <div class="lg:col-span-5 p-8 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10 flex flex-col items-center text-center">
+                    <div class="relative w-44 h-44 mb-6">
+                        <!-- SVG Circular Progress Ring -->
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" stroke="currentColor" stroke-width="8" class="text-black/10 dark:text-white/10" fill="transparent" />
+                            <circle id="analytics-circle-svg" cx="60" cy="60" r="54" stroke="currentColor" stroke-width="8" class="text-primary transition-all duration-1000 ease-out" fill="transparent" stroke-dasharray="339.29" stroke-dashoffset="74.6" stroke-linecap="round" />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-4xl font-extrabold text-primary">78%</span>
+                            <span class="text-[9px] uppercase tracking-widest text-gray-400 font-bold">Curriculum Mastery</span>
+                        </div>
+                    </div>
+
+                    <div id="certificate-status-pill" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/40 inline-flex items-center mb-6">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-ping mr-2"></span>
+                        1 Exam Away From Official Diploma
+                    </div>
+
+                    <div class="w-full grid grid-cols-2 gap-4 text-left border-t border-black/10 dark:border-white/10 pt-6">
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Lectures Watched</span>
+                            <span class="text-base font-bold text-secondary dark:text-white">4 / 5 Modules</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Attendance Rate</span>
+                            <span class="text-base font-bold text-secondary dark:text-white">100% Verified</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Practical Setting</span>
+                            <span class="text-base font-bold text-secondary dark:text-white">98% Accuracy</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Escapement Tuning</span>
+                            <span class="text-base font-bold text-secondary dark:text-white">0.1ms Beat Error</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Competency Breakdown Bars (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">Diamond 4Cs &amp; Loupe Optical Plotting</span>
+                            <span class="text-xs font-mono font-bold text-primary">94% Mastery</span>
+                        </div>
+                        <div class="w-full h-2 rounded bg-black/10 dark:bg-white/10 overflow-hidden">
+                            <div class="h-full bg-primary rounded" style="width: 94%;"></div>
+                        </div>
+                        <p class="text-[11px] text-gray-400 mt-2">Achieved full proficiency in grading table percentages, pavilion angles, and pinpoint identification.</p>
+                    </div>
+
+                    <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">Swiss Mechanical Movement Calibration</span>
+                            <span class="text-xs font-mono font-bold text-primary">88% Mastery</span>
+                        </div>
+                        <div class="w-full h-2 rounded bg-black/10 dark:bg-white/10 overflow-hidden">
+                            <div class="h-full bg-primary rounded" style="width: 88%;"></div>
+                        </div>
+                        <p class="text-[11px] text-gray-400 mt-2">Demonstrated correct application of Moebius 9415 lubrication and beat equilibrium regulation.</p>
+                    </div>
+
+                    <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">18K Precious Metallurgy &amp; Alloy Assaying</span>
+                            <span class="text-xs font-mono font-bold text-primary">82% Mastery</span>
+                        </div>
+                        <div class="w-full h-2 rounded bg-black/10 dark:bg-white/10 overflow-hidden">
+                            <div class="h-full bg-primary rounded" style="width: 82%;"></div>
+                        </div>
+                        <p class="text-[11px] text-gray-400 mt-2">Proficient in calculating 750‰ ternary Au-Cu-Ag phase boundaries and preventing thermal porosity.</p>
+                    </div>
+
+                    <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">Micro-Pavé Setting &amp; Optical Benchwork</span>
+                            <span class="text-xs font-mono font-bold text-primary">76% Mastery</span>
+                        </div>
+                        <div class="w-full h-2 rounded bg-black/10 dark:bg-white/10 overflow-hidden">
+                            <div class="h-full bg-accent rounded" style="width: 76%;"></div>
+                        </div>
+                        <p class="text-[11px] text-gray-400 mt-2">In progress: 4 more hours required on 35x stereo zoom microscopes for final castle bead certification.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: INTERACTIVE CERTIFICATION QUIZ ENGINE -->
+    <section id="quiz-section" class="py-20 bg-[#faf5f1] dark:bg-[#14090e] transition-colors">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12">
+                <span class="text-primary font-bold text-xs uppercase tracking-[0.3em] block mb-2">Comprehensive Evaluation</span>
+                <h2 class="text-3xl font-bold tracking-tight uppercase">Master Horologist &amp; Gemologist Examination</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 max-w-xl mx-auto">Complete this official 5-question evaluation to test your knowledge of diamond grading, watch movements, and metallurgy. Score 80% or higher to unlock your official diploma.</p>
+            </div>
+
+            <!-- Quiz Questions Form -->
+            <form id="quiz-questions-form">
+                <!-- Injected dynamically by academy.js -->
+            </form>
+
+            <div class="mt-8 text-center">
+                <button id="submit-quiz-btn" class="px-8 py-4 rounded bg-primary text-secondary hover:bg-primary/90 font-bold text-sm uppercase tracking-widest transition-all shadow-xl hover:scale-105">
+                    Submit Examination &amp; Grade Answers
+                </button>
+            </div>
+
+            <!-- Quiz Results Card (Initially Hidden) -->
+            <div id="quiz-results-card" class="hidden mt-12 p-8 rounded-lg bg-white dark:bg-secondary border border-primary/40 shadow-2xl text-center fade-in">
+                <div class="w-16 h-16 rounded-full bg-primary/20 text-primary mx-auto flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-secondary dark:text-white uppercase mb-2">Examination Score</h3>
+                <p id="quiz-score-text" class="text-4xl font-extrabold text-primary font-mono mb-4">5 / 5 (100%)</p>
+                <p id="quiz-feedback-msg" class="text-sm text-gray-600 dark:text-gray-300 max-w-lg mx-auto mb-6 leading-relaxed">
+                    Congratulations! You have demonstrated exceptional mastery in Haute Horlogerie &amp; Gemological Sciences.
+                </p>
+                <button id="claim-certificate-btn" class="px-8 py-3.5 rounded bg-accent text-white hover:bg-accent/90 font-bold text-xs uppercase tracking-widest transition-all shadow-lg flex items-center gap-2 mx-auto">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span>View &amp; Claim Official Certificate</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: DOWNLOADABLE RESOURCE VAULT -->
+    <section id="resources-section" class="py-20 bg-white dark:bg-secondary border-t border-b border-black/5 dark:border-white/5 transition-colors">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-primary font-bold text-xs uppercase tracking-[0.3em] block mb-2">Technical Atelier Vault</span>
+                    <h2 class="text-3xl font-bold tracking-tight uppercase">Downloadable Study Manuals &amp; Blueprints</h2>
+                </div>
+                <p class="text-xs text-gray-400 max-w-sm">
+                    High-resolution technical schematics, optical charts, and metallurgy matrices prepared by master craftsmen for workshop reference.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Resource 1 -->
+                <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-primary/40 transition-all flex flex-col justify-between group card-hover">
+                    <div>
+                        <div class="w-12 h-12 rounded bg-primary/10 text-primary flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <span class="text-[10px] text-primary font-bold uppercase tracking-widest block mb-1">Gemology Manual</span>
+                        <h4 class="font-bold text-base mb-2 group-hover:text-primary transition-colors">4Cs Diamond Clarity &amp; Inclusions Plotting Guide</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-6">Detailed plotting symbols, feather risk matrices, and 10x standardized daylight bench protocols.</p>
+                    </div>
+                    <button class="download-resource-btn w-full py-2.5 px-4 rounded bg-black/5 dark:bg-white/10 hover:bg-primary hover:text-secondary text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2" data-resource="diamond-grading-chart">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>Download Manual</span>
+                    </button>
+                </div>
+
+                <!-- Resource 2 -->
+                <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-primary/40 transition-all flex flex-col justify-between group card-hover">
+                    <div>
+                        <div class="w-12 h-12 rounded bg-primary/10 text-primary flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        </div>
+                        <span class="text-[10px] text-primary font-bold uppercase tracking-widest block mb-1">Horology Blueprint</span>
+                        <h4 class="font-bold text-base mb-2 group-hover:text-primary transition-colors">Swiss Lever Escapement Calibration Blueprint</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-6">Draw angle tolerances, banking pin positions, and Moebius 9415 lubrication schematic.</p>
+                    </div>
+                    <button class="download-resource-btn w-full py-2.5 px-4 rounded bg-black/5 dark:bg-white/10 hover:bg-primary hover:text-secondary text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2" data-resource="escapement-blueprint">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>Download Blueprint</span>
+                    </button>
+                </div>
+
+                <!-- Resource 3 -->
+                <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-primary/40 transition-all flex flex-col justify-between group card-hover">
+                    <div>
+                        <div class="w-12 h-12 rounded bg-primary/10 text-primary flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <span class="text-[10px] text-primary font-bold uppercase tracking-widest block mb-1">Metallurgy Reference</span>
+                        <h4 class="font-bold text-base mb-2 group-hover:text-primary transition-colors">18K Precious Metals Assay &amp; Alloying Sheet</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-6">Vermeil Royal Rose Gold (750/210/40) ratios, annealing temperatures, and porosity tests.</p>
+                    </div>
+                    <button class="download-resource-btn w-full py-2.5 px-4 rounded bg-black/5 dark:bg-white/10 hover:bg-primary hover:text-secondary text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2" data-resource="metallurgy-matrix">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>Download Matrix</span>
+                    </button>
+                </div>
+
+                <!-- Resource 4 -->
+                <div class="p-6 rounded-lg bg-[#faf5f1] dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-primary/40 transition-all flex flex-col justify-between group card-hover">
+                    <div>
+                        <div class="w-12 h-12 rounded bg-primary/10 text-primary flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <span class="text-[10px] text-primary font-bold uppercase tracking-widest block mb-1">Optical Compendium</span>
+                        <h4 class="font-bold text-base mb-2 group-hover:text-primary transition-colors">Gemstone Refractive Index &amp; Specific Gravity Table</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-6">Index of refraction (1.400 - 2.417), optic signs, and pleochroism for 60+ precious gemstones.</p>
+                    </div>
+                    <button class="download-resource-btn w-full py-2.5 px-4 rounded bg-black/5 dark:bg-white/10 hover:bg-primary hover:text-secondary text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2" data-resource="gem-refractive-index">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>Download Table</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: MASTER INSTRUCTOR MANAGER & ATELIER MENTORS -->
+    <section id="instructors-section" class="py-20 bg-[#faf5f1] dark:bg-[#14090e] transition-colors">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-primary font-bold text-xs uppercase tracking-[0.3em] block mb-2">Atelier Faculty &amp; Mentorship</span>
+                    <h2 class="text-3xl font-bold tracking-tight uppercase">Master Instructors &amp; Horologists</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="open-instructor-admin-btn" class="px-4 py-2 rounded bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5" title="Manage Faculty Roster">
+                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        <span>Instructor Manager</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Instructor Cards Grid -->
+            <div id="instructors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Dynamically rendered by academy.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: EXIT TO BOUTIQUE CALL-TO-ACTION SECTION -->
+    <section class="py-20 bg-gradient-to-r from-secondary via-[#260e1b] to-secondary border-t border-primary/20 text-white text-center relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10 max-w-3xl">
+            <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-primary/20 text-primary border border-primary/40 inline-block mb-4">
+                Transition to Retail Atelier
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">
+                Experience Vermeil &amp; Co. Haute Creations
+            </h2>
+            <p class="text-sm text-gray-300 leading-relaxed mb-8">
+                Apply your appreciation of Swiss escapement geometry and fine gemstone craftsmanship to our limited-edition bespoke timepieces and artisanal jewelry collections.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html" class="px-8 py-3.5 rounded bg-primary text-secondary hover:bg-primary/90 font-bold text-xs uppercase tracking-widest transition-all shadow-xl flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span>Exit to Boutique Home</span>
+                </a>
+                <a href="jewelry.html" class="px-8 py-3.5 rounded bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-widest transition-all">
+                    <span>Explore Fine Jewelry</span>
+                </a>
+                <a href="shop.html" class="px-8 py-3.5 rounded bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-widest transition-all">
+                    <span>Shop Luxury Watches</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-secondary text-white py-16 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="academy.html" class="flex items-center gap-3 mb-4">
+                        <img src="images/logo.png" alt="Vermeil &amp; Co." class="h-8 w-auto">
+                        <span class="text-lg font-bold tracking-tighter text-primary">VERMEIL ACADEMY</span>
+                    </a>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Dedicated to preserving traditional artisanal horological benchmarks and international gemological excellence.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Curriculum</h5>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#video-player-section" class="hover:text-white transition-colors">Diamond 4Cs Microscopy</a></li>
+                        <li><a href="#video-player-section" class="hover:text-white transition-colors">Swiss Lever Escapements</a></li>
+                        <li><a href="#video-player-section" class="hover:text-white transition-colors">18K Precious Metallurgy</a></li>
+                        <li><a href="#video-player-section" class="hover:text-white transition-colors">Micro-Pavé Setting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Student Portals</h5>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#analytics-section" class="hover:text-white transition-colors">Progress Analytics</a></li>
+                        <li><a href="#quiz-section" class="hover:text-white transition-colors">Certification Exam</a></li>
+                        <li><a href="#resources-section" class="hover:text-white transition-colors">Downloadable Blueprints</a></li>
+                        <li><a href="#instructors-section" class="hover:text-white transition-colors">Faculty Directory</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Retail Boutique</h5>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Store Home</a></li>
+                        <li><a href="jewelry.html" class="hover:text-white transition-colors">Fine Jewelry Collection</a></li>
+                        <li><a href="shop.html" class="hover:text-white transition-colors">Watches Catalog</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Atelier Appointments</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500 gap-4">
+                <p>&copy; 2026 Vermeil &amp; Co. Academy of Haute Horlogerie &amp; Fine Jewelry. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="index.html" class="hover:text-primary transition-colors">Exit to Boutique</a>
+                    <a href="about.html" class="hover:text-primary transition-colors">About Vermeil</a>
+                    <a href="contact.html" class="hover:text-primary transition-colors">Contact Academy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: OFFICIAL DIPLOMA CERTIFICATE MODAL -->
+    <div id="certificate-modal" class="fixed inset-0 z-[200] bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="w-full max-w-3xl bg-[#fcfaf7] text-[#14090e] p-8 md:p-12 rounded-lg border-8 border-[#d4af37] shadow-2xl relative">
+            <button id="close-cert-modal" class="absolute top-4 right-4 p-2 text-gray-500 hover:text-black">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Certificate Header -->
+            <div class="text-center mb-6 border-b border-primary/30 pb-6">
+                <img src="images/logo.png" alt="Vermeil &amp; Co." class="h-12 w-auto mx-auto mb-2">
+                <h2 class="text-xs uppercase tracking-[0.4em] font-bold text-accent">Académie de Haute Horlogerie &amp; Joaillerie</h2>
+                <h3 class="text-3xl font-serif font-bold text-secondary uppercase tracking-wider mt-1">Diplôme de Maître Praticien</h3>
+                <p class="text-[10px] uppercase tracking-widest text-primary font-bold mt-1">Official Academy Credential • ID: #VM-2026-9812</p>
+            </div>
+
+            <!-- Certificate Body -->
+            <div class="text-center my-8">
+                <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">This is to officially certify that</p>
+                <h4 id="cert-display-name" class="text-3xl font-bold font-serif text-secondary tracking-tight border-b-2 border-primary/40 inline-block px-8 pb-1">
+                    Julien De Vere
+                </h4>
+                <p class="text-xs text-gray-600 mt-4 max-w-xl mx-auto leading-relaxed">
+                    has successfully satisfied all rigorous theoretical examinations, 10x diamond clarity evaluations, Swiss lever escapement calibrations, and benchwork metallurgical standards prescribed by the Vermeil Academic Faculty.
+                </p>
+            </div>
+
+            <!-- Certificate Signatures -->
+            <div class="grid grid-cols-3 gap-6 pt-6 border-t border-primary/30 text-center text-xs">
+                <div>
+                    <span class="font-serif italic font-bold block text-sm">Philippe Laurent</span>
+                    <span class="text-[10px] uppercase text-gray-500 block">Master Horologist</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-primary flex items-center justify-center text-[8px] font-bold text-primary uppercase">
+                        VERMEIL SEAL
+                    </div>
+                    <span id="cert-issue-date" class="text-[9px] text-gray-400 mt-1">October 14, 2026</span>
+                </div>
+                <div>
+                    <span class="font-serif italic font-bold block text-sm">Dr. Hélène Vance</span>
+                    <span class="text-[10px] uppercase text-gray-500 block">Head of Gemology, GG</span>
+                </div>
+            </div>
+
+            <!-- Print / Edit Name Controls -->
+            <div class="mt-8 pt-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <label for="cert-student-name" class="text-xs font-bold uppercase text-gray-500">Student Name:</label>
+                    <input type="text" id="cert-student-name" value="Julien De Vere" class="px-3 py-1.5 rounded border border-gray-300 text-xs text-secondary focus:outline-none focus:border-primary">
+                </div>
+                <button id="print-certificate-btn" class="px-6 py-2.5 rounded bg-primary text-secondary hover:bg-primary/90 font-bold text-xs uppercase tracking-widest transition-all shadow-md flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <span>Print / Save Diploma</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: BOOK OFFICE HOURS MENTORSHIP MODAL -->
+    <div id="book-office-hours-modal" class="fixed inset-0 z-[200] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white dark:bg-secondary border border-black/10 dark:border-white/10 rounded-lg p-8 shadow-2xl text-secondary dark:text-white relative">
+            <button id="close-book-modal" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-xl font-bold uppercase mb-1">Book 1-on-1 Mentorship</h3>
+            <p class="text-xs text-primary font-semibold mb-6">Atelier Mentor: <span id="book-instructor-target-name">Philippe Laurent</span></p>
+
+            <form id="book-mentor-form" class="space-y-4">
+                <div>
+                    <label for="book-topic" class="text-xs font-bold uppercase tracking-wider block mb-1">Mentorship Focus Topic</label>
+                    <select id="book-topic" required class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                        <option value="Escapement Regulation">Swiss Escapement &amp; Beat Tuning</option>
+                        <option value="Diamond Inclusions">Diamond 4Cs &amp; Inclusion Classification</option>
+                        <option value="Micro-Pavé Technique">Micro-Pavé Graver Sharpening</option>
+                        <option value="18K Gold Alloys">18K Gold Metallurgy &amp; Casting Porosity</option>
+                        <option value="Portfolio Review">Master Diploma Benchwork Portfolio Review</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="book-date" class="text-xs font-bold uppercase tracking-wider block mb-1">Session Date</label>
+                        <input type="date" id="book-date" required class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="book-time" class="text-xs font-bold uppercase tracking-wider block mb-1">Preferred Time</label>
+                        <select id="book-time" required class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                            <option value="10:00 CET">10:00 CET</option>
+                            <option value="11:30 CET">11:30 CET</option>
+                            <option value="14:00 CET">14:00 CET</option>
+                            <option value="16:00 CET">16:00 CET</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="book-notes" class="text-xs font-bold uppercase tracking-wider block mb-1">Atelier Bench Notes (Optional)</label>
+                    <textarea id="book-notes" rows="2" placeholder="Describe the specific calibre or gemstone under review..." class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 rounded bg-primary text-secondary hover:bg-primary/90 font-bold text-xs uppercase tracking-widest transition-all shadow-md">
+                    Confirm Mentorship Reservation
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: INSTRUCTOR MANAGER & ADMINISTRATION MODAL -->
+    <div id="instructor-admin-modal" class="fixed inset-0 z-[200] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white dark:bg-secondary border border-black/10 dark:border-white/10 rounded-lg p-8 shadow-2xl text-secondary dark:text-white relative">
+            <button id="close-instructor-admin-modal" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-xl font-bold uppercase mb-1">Instructor Administration</h3>
+            <p class="text-xs text-gray-400 mb-6">Appoint or update Master Mentors in the Academy Faculty Roster.</p>
+
+            <form id="new-instructor-form" class="space-y-4">
+                <div>
+                    <label for="admin-inst-name" class="text-xs font-bold uppercase tracking-wider block mb-1">Instructor Full Name</label>
+                    <input type="text" id="admin-inst-name" required placeholder="e.g. Master Jean-Luc Picard, GG" class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                    <label for="admin-inst-title" class="text-xs font-bold uppercase tracking-wider block mb-1">Academic Title</label>
+                    <input type="text" id="admin-inst-title" required placeholder="e.g. Master Horologist &amp; Tourbillon Specialist" class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                    <label for="admin-inst-credentials" class="text-xs font-bold uppercase tracking-wider block mb-1">Credentials &amp; Institution</label>
+                    <input type="text" id="admin-inst-credentials" required placeholder="e.g. Geneva Watchmaking School, 24 Years Benchwork" class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                    <label for="admin-inst-specialty" class="text-xs font-bold uppercase tracking-wider block mb-1">Primary Specialty</label>
+                    <input type="text" id="admin-inst-specialty" required placeholder="e.g. Balance Spring Poising &amp; Complications" class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                    <label for="admin-inst-hours" class="text-xs font-bold uppercase tracking-wider block mb-1">Available Atelier Office Hours</label>
+                    <input type="text" id="admin-inst-hours" required placeholder="e.g. Tue &amp; Thu • 14:00 - 18:00 CET" class="w-full p-2.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs focus:border-primary focus:outline-none">
+                </div>
+                <button type="submit" class="w-full py-3 rounded bg-primary text-secondary hover:bg-primary/90 font-bold text-xs uppercase tracking-widest transition-all shadow-md">
+                    Appoint Master to Faculty
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/academy.js"></script>
+</body>
+</html>
