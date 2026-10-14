@@ -86,12 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sticky Header & Scroll to Top
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('sticky');
-            scrollTopBtn.classList.add('show');
-        } else {
-            header.classList.remove('sticky');
-            scrollTopBtn.classList.remove('show');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        }
+        if (scrollTopBtn) {
+            if (window.scrollY > 50) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
         }
     });
 
@@ -100,6 +107,26 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // Password Visibility Toggle Handler
+    const passwordToggleButtons = document.querySelectorAll('.password-toggle-btn');
+    passwordToggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const input = targetId ? document.getElementById(targetId) : btn.closest('.relative')?.querySelector('input');
+            if (!input) return;
+
+            const isPassword = input.getAttribute('type') === 'password';
+            input.setAttribute('type', isPassword ? 'text' : 'password');
+
+            const eyeIcon = btn.querySelector('.eye-icon');
+            const eyeOffIcon = btn.querySelector('.eye-off-icon');
+            if (eyeIcon && eyeOffIcon) {
+                eyeIcon.classList.toggle('hidden', isPassword);
+                eyeOffIcon.classList.toggle('hidden', !isPassword);
+            }
+        });
+    });
 
     // Cart Event Listeners
     if (cartToggle) {

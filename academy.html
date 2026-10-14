@@ -31,103 +31,115 @@
 </head>
 <body class="bg-[#fcf9f7] dark:bg-[#14090e] text-[#2b1f24] dark:text-[#fbf6f3] transition-colors duration-300">
 
-    <!-- Top Announcement Bar with Clear Boutique Exit Link -->
-    <div class="bg-accent text-white py-2 px-6 text-xs font-semibold tracking-wider flex justify-between items-center z-50 relative border-b border-white/10">
-        <div class="flex items-center gap-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            <span>VERMEIL SKILLS ACADEMY • ACCREDITED GEMOLOGICAL &amp; HOROLOGICAL CURRICULUM</span>
-        </div>
-        <div class="flex items-center gap-4">
-            <a href="index.html" class="flex items-center gap-1.5 text-primary hover:text-white transition-colors uppercase font-bold text-[11px] tracking-widest bg-black/30 px-3 py-1 rounded">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                <span>Exit to Main Boutique</span>
-            </a>
-        </div>
+    <!-- Left Sidebar Backdrop for Mobile -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+
+    <!-- Mobile Header Bar (Only visible on screens < lg) -->
+    <div class="lg:hidden sticky top-0 z-30 bg-white/95 dark:bg-[#14090e]/95 backdrop-blur border-b border-black/10 dark:border-white/10 px-4 py-3 flex items-center justify-between">
+        <a href="academy.html" class="flex items-center gap-3">
+            <img src="images/logo.png" alt="Vermeil Academy" class="h-8 w-auto object-contain">
+            <div>
+                <span class="text-base font-bold tracking-tight text-primary block leading-none">VERMEIL ACADEMY</span>
+                <span class="text-[8px] uppercase tracking-[0.25em] opacity-60 block mt-0.5">Haute Horlogerie &amp; Gemology</span>
+            </div>
+        </a>
+        <button id="sidebar-open-btn" class="p-2 rounded-md text-primary hover:bg-black/5 dark:hover:bg-white/5 transition-colors" aria-label="Open Navigation Sidebar">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
     </div>
 
-    <!-- Main Academy Header -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-secondary/95 backdrop-blur-md border-b border-black/5 dark:border-white/10 transition-colors">
-        <nav class="container mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Brand -->
-            <div class="flex items-center gap-6">
-                <a href="academy.html" class="flex items-center gap-4 group">
-                    <img src="images/logo.png" alt="Vermeil &amp; Co. Academy" class="h-10 w-auto object-contain">
+    <!-- Left Navigation Sidebar -->
+    <aside id="academy-sidebar" class="fixed inset-y-0 left-0 w-72 bg-white dark:bg-secondary border-r border-black/10 dark:border-white/10 z-50 flex flex-col justify-between overflow-y-auto py-6 px-5 transition-transform duration-300 -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+        <div class="space-y-6">
+            <!-- Sidebar Header & Logo -->
+            <div class="flex items-center justify-between pb-5 border-b border-black/5 dark:border-white/10">
+                <a href="academy.html" class="flex items-center gap-3 group">
+                    <img src="images/logo.png" alt="Vermeil Academy Logo" class="h-10 w-auto object-contain">
                     <div>
-                        <span class="text-xl font-bold tracking-tighter text-primary block leading-none">VERMEIL ACADEMY</span>
-                        <span class="text-[9px] uppercase tracking-[0.3em] opacity-60 block mt-0.5">Haute Horlogerie &amp; Gemology</span>
+                        <span class="text-lg font-bold tracking-tight text-primary block leading-none">VERMEIL ACADEMY</span>
+                        <span class="text-[8px] uppercase tracking-[0.25em] opacity-60 block mt-1">Haute Horlogerie &amp; Gemology</span>
                     </div>
                 </a>
+                <button id="sidebar-close-btn" class="lg:hidden p-1.5 text-gray-400 hover:text-white rounded-md hover:bg-white/5" aria-label="Close Sidebar">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
 
-            <!-- Portal Navigation Links -->
-            <div class="hidden xl:flex items-center gap-7 text-xs font-bold uppercase tracking-widest">
-                <a href="#video-player-section" class="hover:text-primary transition-colors">Lessons</a>
-                <a href="#analytics-section" class="hover:text-primary transition-colors">Student Analytics</a>
-                <a href="#quiz-section" class="hover:text-primary transition-colors">Examination</a>
-                <a href="#resources-section" class="hover:text-primary transition-colors">Resource Vault</a>
-                <a href="#instructors-section" class="hover:text-primary transition-colors">Instructors</a>
-                <a href="jewelry.html" class="text-primary hover:text-white transition-colors flex items-center gap-1">
+            <!-- Student Profile Snapshot -->
+            <div class="p-3.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-accent to-primary p-0.5 shadow-md">
+                        <div class="w-full h-full rounded-full bg-secondary flex items-center justify-center text-primary font-bold text-xs">
+                            JD
+                        </div>
+                    </div>
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-500 border border-secondary"></span>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <span class="text-xs font-bold text-secondary dark:text-white block truncate">Julien De Vere</span>
+                    <span class="text-[9px] text-primary uppercase tracking-widest font-semibold block">Candidate VM-884</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="space-y-1.5">
+                <span class="text-[9px] uppercase tracking-[0.25em] font-bold text-secondary/40 dark:text-white/40 px-3 block mb-2">Portal Navigation</span>
+                
+                <a href="#video-player-section" class="academy-nav-link flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-secondary/80 dark:text-white/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 group">
+                    <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Lessons</span>
+                </a>
+
+                <a href="#analytics-section" class="academy-nav-link flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-secondary/80 dark:text-white/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 group">
+                    <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span>Student Analytics</span>
+                </a>
+
+                <a href="#quiz-section" class="academy-nav-link flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-secondary/80 dark:text-white/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 group">
+                    <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                    <span>Examination</span>
+                </a>
+
+                <a href="#resources-section" class="academy-nav-link flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-secondary/80 dark:text-white/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 group">
+                    <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                    <span>Resource Vault</span>
+                </a>
+
+                <a href="#instructors-section" class="academy-nav-link flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-secondary/80 dark:text-white/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 group">
+                    <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <span>Instructors</span>
+                </a>
+
+                <a href="jewelry.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-primary hover:text-white hover:bg-primary/20 transition-all duration-200 group">
+                    <svg class="w-4 h-4 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>Jewelry Atelier</span>
                 </a>
             </div>
+        </div>
 
-            <!-- Utilities: Exit Button + RTL + Theme -->
-            <div class="hidden xl:flex items-center space-x-4">
-                <a href="index.html" class="px-4 py-2 rounded border border-primary/40 text-primary hover:bg-primary hover:text-secondary text-xs font-bold uppercase tracking-widest transition-all flex items-center gap-1.5" title="Return to store homepage">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                    <span>Exit Portal</span>
-                </a>
-
-                <button id="rtl-toggle"
-                    class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-current"
-                    title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
-                    </svg>
-                </button>
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors" title="Toggle Dark/Light Mode"></button>
-            </div>
-
-            <!-- Mobile Trigger -->
-            <button id="mobile-menu-btn" class="xl:hidden p-2 text-primary" aria-label="Open Academy Menu">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </nav>
-    </header>
-
-    <!-- Mobile Slide-out Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-secondary flex flex-col p-8 xl:hidden">
-        <div class="flex justify-between items-center mb-10">
-            <a href="academy.html" class="flex items-center gap-3">
-                <img src="images/logo.png" alt="Vermeil &amp; Co. Academy" class="h-9 w-auto object-contain">
-                <span class="text-xl font-bold tracking-tighter text-primary">VERMEIL ACADEMY</span>
+        <!-- Sidebar Footer Utilities -->
+        <div class="pt-5 border-t border-black/5 dark:border-white/10 space-y-4">
+            <!-- Exit to Main Boutique -->
+            <a href="index.html" class="w-full px-4 py-2.5 rounded-md border border-primary/40 text-primary hover:bg-primary hover:text-secondary text-xs font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span>Exit Boutique</span>
             </a>
-            <button id="mobile-menu-close" class="p-2 text-primary">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <div class="flex flex-col space-y-5 text-lg text-white">
-            <a href="#video-player-section" class="hover:text-primary transition-colors">Video Lessons</a>
-            <a href="#analytics-section" class="hover:text-primary transition-colors">Student Analytics</a>
-            <a href="#quiz-section" class="hover:text-primary transition-colors">Certification Quiz</a>
-            <a href="#resources-section" class="hover:text-primary transition-colors">Resource Vault</a>
-            <a href="#instructors-section" class="hover:text-primary transition-colors">Instructor Directory</a>
-            <div class="border-t border-white/10 pt-4 mt-2">
-                <a href="index.html" class="text-primary font-bold flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    <span>Exit to Main Boutique</span>
-                </a>
+
+            <!-- Mode & Direction Controls -->
+            <div class="flex items-center justify-between px-2 pt-1 text-secondary/70 dark:text-white/70">
+                <span class="text-[10px] uppercase tracking-wider opacity-60">Display:</span>
+                <div class="flex items-center space-x-2">
+                    <button id="rtl-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-current" title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/></svg>
+                    </button>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" title="Toggle Dark/Light Mode"></button>
+                </div>
             </div>
         </div>
-        <div class="mt-auto flex items-center space-x-6 text-white pt-6 border-t border-white/10">
-            <button id="rtl-toggle-mobile" class="p-2 rounded-full hover:bg-white/10 hover:text-primary transition-colors flex items-center justify-center text-white" title="Toggle Text Direction (RTL / LTR)" aria-label="Toggle Text Direction">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7v-3l-4 4 4 4v-3h12v-2H8z"/>
-                </svg>
-            </button>
-            <button id="theme-toggle-mobile" class="text-xs font-bold opacity-70 hover:text-primary transition-colors uppercase tracking-widest">Theme</button>
-        </div>
-    </div>
+    </aside>
+
+    <!-- Main Content Wrapper (Shifted right on desktop) -->
+    <div class="lg:pl-72 flex-1 min-w-0 flex flex-col">
 
     <!-- Student Dashboard Hero Bar -->
     <section class="bg-gradient-to-r from-[#1c0d14] via-[#14090e] to-[#250d19] border-b border-white/10 py-10 text-white relative overflow-hidden">
@@ -574,57 +586,8 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-secondary text-white py-16 border-t border-white/10">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div>
-                    <a href="academy.html" class="flex items-center gap-3 mb-4">
-                        <img src="images/logo.png" alt="Vermeil &amp; Co." class="h-8 w-auto">
-                        <span class="text-lg font-bold tracking-tighter text-primary">VERMEIL ACADEMY</span>
-                    </a>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Dedicated to preserving traditional artisanal horological benchmarks and international gemological excellence.
-                    </p>
-                </div>
-                <div>
-                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Curriculum</h5>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="#video-player-section" class="hover:text-white transition-colors">Diamond 4Cs Microscopy</a></li>
-                        <li><a href="#video-player-section" class="hover:text-white transition-colors">Swiss Lever Escapements</a></li>
-                        <li><a href="#video-player-section" class="hover:text-white transition-colors">18K Precious Metallurgy</a></li>
-                        <li><a href="#video-player-section" class="hover:text-white transition-colors">Micro-Pavé Setting</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Student Portals</h5>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="#analytics-section" class="hover:text-white transition-colors">Progress Analytics</a></li>
-                        <li><a href="#quiz-section" class="hover:text-white transition-colors">Certification Exam</a></li>
-                        <li><a href="#resources-section" class="hover:text-white transition-colors">Downloadable Blueprints</a></li>
-                        <li><a href="#instructors-section" class="hover:text-white transition-colors">Faculty Directory</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Retail Boutique</h5>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="index.html" class="hover:text-white transition-colors">Store Home</a></li>
-                        <li><a href="jewelry.html" class="hover:text-white transition-colors">Fine Jewelry Collection</a></li>
-                        <li><a href="shop.html" class="hover:text-white transition-colors">Watches Catalog</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors">Atelier Appointments</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500 gap-4">
-                <p>&copy; 2026 Vermeil &amp; Co. Academy of Haute Horlogerie &amp; Fine Jewelry. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="index.html" class="hover:text-primary transition-colors">Exit to Boutique</a>
-                    <a href="about.html" class="hover:text-primary transition-colors">About Vermeil</a>
-                    <a href="contact.html" class="hover:text-primary transition-colors">Contact Academy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </div>
+    <!-- End Main Content Wrapper -->
 
     <!-- MODAL 1: OFFICIAL DIPLOMA CERTIFICATE MODAL -->
     <div id="certificate-modal" class="fixed inset-0 z-[200] bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
@@ -770,5 +733,58 @@
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/academy.js"></script>
+
+    <!-- Sidebar Mobile Toggle & Active Highlighting Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('academy-sidebar');
+            const backdrop = document.getElementById('sidebar-backdrop');
+            const openBtn = document.getElementById('sidebar-open-btn');
+            const closeBtn = document.getElementById('sidebar-close-btn');
+
+            function openSidebar() {
+                if (sidebar) sidebar.classList.remove('-translate-x-full');
+                if (backdrop) backdrop.classList.remove('hidden');
+            }
+
+            function closeSidebar() {
+                if (sidebar) sidebar.classList.add('-translate-x-full');
+                if (backdrop) backdrop.classList.add('hidden');
+            }
+
+            if (openBtn) openBtn.addEventListener('click', openSidebar);
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            if (backdrop) backdrop.addEventListener('click', closeSidebar);
+
+            // Close on nav link click in mobile view
+            const navLinks = document.querySelectorAll('.academy-nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 1024) {
+                        closeSidebar();
+                    }
+                });
+            });
+
+            // Active section highlighting on scroll
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(sec => {
+                    const top = sec.offsetTop - 140;
+                    if (window.scrollY >= top) {
+                        current = '#' + sec.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === current) {
+                        link.classList.add('text-primary', 'bg-primary/10', 'font-black');
+                    } else {
+                        link.classList.remove('bg-primary/10', 'font-black');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
